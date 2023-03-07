@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "label": "OpenAI",
     "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
-    "publisher": "",
+    "publisher": "Fortinet",
     "icon_small_name": "",
     "icon_large_name": "",
-    "category": "",
+    "category": "Miscellaneous",
     "configuration": {
         "fields": [
             {
