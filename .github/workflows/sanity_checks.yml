@@ -1,0 +1,21 @@
+name: Sanity Checks
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+
+  sanity_checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: execute sanity_checks.py script
+        run: python .github/workflows/sanity_checks_utcs.py

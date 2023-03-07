@@ -1,0 +1,26 @@
+name: Pytest Checks
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+
+  pytest_checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: install pytest
+        run: pip3 install pytest
+
+
+      - name: trigger-pytest
+        continue-on-error: true
+        run: pytest
