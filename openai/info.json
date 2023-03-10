@@ -1,0 +1,72 @@
+{
+    "name": "openai",
+    "version": "1.0.0",
+    "label": "OpenAI",
+    "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
+    "publisher": "Fortinet",
+    "icon_small_name": "",
+    "icon_large_name": "",
+    "category": "Miscellaneous",
+    "configuration": {
+        "fields": [
+            {
+                "title": "API Key",
+                "type": "password",
+                "name": "apiKey",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": null
+            }
+        ]
+    },
+    "operations": [
+        {
+            "title": "Generate a chat completion",
+            "operation": "chat_completions",
+            "description": "",
+            "parameters": [
+                {
+                    "title": "message",
+                    "type": "text",
+                    "name": "message",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": ""
+                },
+                {
+                    "title": "Model",
+                    "type": "text",
+                    "name": "model",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "gpt-3.5-turbo"
+                }
+            ],
+            "category": "miscellaneous",
+            "output_schema": {
+                "id": "",
+                "model": "",
+                "usage": {
+                  "total_tokens": 110,
+                  "prompt_tokens": 25,
+                  "completion_tokens": 85
+                },
+                "object": "chat.completion",
+                "choices": [
+                  {
+                    "index": 0,
+                    "message": {
+                      "role": "assistant",
+                      "content": ""
+                    },
+                    "finish_reason": ""
+                  }
+                ],
+                "created": 1678095657
+            }
+        }
+    ]
+}
