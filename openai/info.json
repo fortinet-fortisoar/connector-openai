@@ -4,8 +4,8 @@
     "label": "OpenAI",
     "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
     "publisher": "Fortinet",
-    "icon_small_name": "",
-    "icon_large_name": "",
+    "icon_small_name": "small.png",
+    "icon_large_name": "large.png",
     "category": "Miscellaneous",
     "configuration": {
         "fields": [
@@ -24,15 +24,17 @@
         {
             "title": "Generate a chat completion",
             "operation": "chat_completions",
-            "description": "",
+            "description": "Generate a completion for a given chat message using a pre-trained deep learning model.",
             "parameters": [
                 {
-                    "title": "message",
+                    "title": "Message",
                     "type": "text",
                     "name": "message",
                     "required": true,
                     "visible": true,
                     "editable": true,
+                    "description": "Specify the messages for which you want to generate a chat completions.",
+                    "tooltip": "Specify the messages for which you want to generate a chat completions.",
                     "value": ""
                 },
                 {
@@ -42,7 +44,9 @@
                     "required": false,
                     "visible": true,
                     "editable": true,
-                    "value": "gpt-3.5-turbo"
+                    "value": "gpt-3.5-turbo",
+                    "description": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo.",
+                    "tooltip": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo."
                 }
             ],
             "category": "miscellaneous",
@@ -50,22 +54,22 @@
                 "id": "",
                 "model": "",
                 "usage": {
-                  "total_tokens": 110,
-                  "prompt_tokens": 25,
-                  "completion_tokens": 85
+                  "total_tokens": "",
+                  "prompt_tokens": "",
+                  "completion_tokens": ""
                 },
-                "object": "chat.completion",
+                "object": "",
                 "choices": [
                   {
-                    "index": 0,
+                    "index": "",
                     "message": {
-                      "role": "assistant",
+                      "role": "",
                       "content": ""
                     },
                     "finish_reason": ""
                   }
                 ],
-                "created": 1678095657
+                "created": ""
             }
         }
     ]

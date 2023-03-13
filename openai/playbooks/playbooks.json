@@ -1,104 +1,109 @@
 {
-    "type": "workflow_collections",
-    "data": [
-      {
-        "@type": "WorkflowCollection",
-        "name": "Sample - OpenAI - 1.0.0",
-        "description": null,
-        "visible": true,
-        "image": null,
-        "uuid": "ac435ba8-6c64-4207-95c1-7e995819aaea",
-        "id": 54,
-        "deletedAt": null,
-        "importedBy": [],
-        "recordTags": [],
-        "workflows": [
-          {
-            "@type": "Workflow",
-            "triggerLimit": null,
-            "name": "Chat Completions",
-            "aliasName": null,
-            "tag": null,
-            "description": null,
-            "isActive": false,
-            "debug": false,
-            "singleRecordExecution": false,
-            "remoteExecutableFlag": false,
-            "parameters": [],
-            "synchronous": false,
-            "lastModifyDate": 1678212368,
-            "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e995819aaea",
-            "versions": [],
-            "triggerStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
-            "steps": [
-              {
-                "@type": "WorkflowStep",
-                "name": "Sample message completion",
-                "description": null,
-                "arguments": {
-                  "name": "OpenAI",
-                  "config": "5b350441-4d54-4eb1-b20e-6be997d21213",
-                  "params": {
-                    "model": "gpt-3.5-turbo",
-                    "message": "Jinja expression to find a union of two lists"
-                  },
-                  "version": "1.0.0",
-                  "connector": "openai",
-                  "operation": "chat_completions",
-                  "operationTitle": "Generate a chat completion",
-                  "pickFromTenant": false,
-                  "step_variables": []
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - OpenAI - 1.0.0",
+      "description": null,
+      "visible": true,
+      "image": null,
+      "uuid": "ac435ba8-6c64-4207-95c1-7e995819aaea",
+      "id": 54,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [
+        "openai"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Chat Completions",
+          "aliasName": null,
+          "tag": null,
+          "description": "Generate a completion for a given chat message using a pre-trained deep learning model.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1678700908,
+          "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e995819aaea",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Sample message completion",
+              "description": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "d6b04965-114a-45a6-9e30-308cca314ecf",
+                "params": {
+                  "model": "gpt-3.5-turbo",
+                  "message": ""
                 },
-                "status": null,
-                "top": "160",
-                "left": "200",
-                "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-                "group": null,
-                "uuid": "da0e134e-5625-4359-b7fa-542b265c8c61"
+                "version": "1.0.0",
+                "connector": "openai",
+                "operation": "chat_completions",
+                "operationTitle": "Generate a chat completion",
+                "pickFromTenant": false,
+                "step_variables": []
               },
-              {
-                "@type": "WorkflowStep",
-                "name": "Start",
-                "description": null,
-                "arguments": {
-                  "step_variables": {
-                    "input": {
-                      "params": []
-                    }
+              "status": null,
+              "top": "160",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "6c487b6e-0e48-4613-8280-7d5c9153e887"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
                   }
-                },
-                "status": null,
-                "top": "40",
-                "left": "40",
-                "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-                "group": null,
-                "uuid": "6d0e3551-72c9-403f-a25c-cb5f9734fd2b"
-              }
-            ],
-            "routes": [
-              {
-                "@type": "WorkflowRoute",
-                "name": "Start -> Sample message completion",
-                "targetStep": "/api/3/workflow_steps/da0e134e-5625-4359-b7fa-542b265c8c61",
-                "sourceStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
-                "label": null,
-                "isExecuted": false,
-                "group": null,
-                "uuid": "99f5e279-fdf1-4128-bfb4-a67127541b4a"
-              }
-            ],
-            "groups": [],
-            "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-            "uuid": "6e37364f-5a82-47bb-89e5-101783153d6f",
-            "id": 639,
-            "owners": [],
-            "isPrivate": false,
-            "deletedAt": null,
-            "importedBy": [],
-            "recordTags": []
-          }
-        ]
-      }
-    ],
-    "exported_tags": []
-  }
+                }
+              },
+              "status": null,
+              "top": "20",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+              "group": null,
+              "uuid": "6d0e3551-72c9-403f-a25c-cb5f9734fd2b"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Sample message completion",
+              "targetStep": "/api/3/workflow_steps/6c487b6e-0e48-4613-8280-7d5c9153e887",
+              "sourceStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "16872105-c756-4c96-9ea0-189c2066ff1a"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "6e37364f-5a82-47bb-89e5-101783153d6f",
+          "id": 6171,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "openai"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "openai"
+  ]
+}
