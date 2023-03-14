@@ -13,6 +13,8 @@
                 "title": "API Key",
                 "type": "password",
                 "name": "apiKey",
+                "description": "Specify the API key to access the endpoint to which you will connect and perform the automated operations",
+                "tooltip": "Specify the API key to access the endpoint to which you will connect and perform the automated operations",
                 "required": true,
                 "visible": true,
                 "editable": true,
@@ -24,6 +26,7 @@
         {
             "title": "Generate a chat completion",
             "operation": "chat_completions",
+            "annotation": "chat_completions",
             "description": "Generate a completion for a given chat message using a pre-trained deep learning model.",
             "parameters": [
                 {
@@ -33,8 +36,8 @@
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "description": "Specify the messages for which you want to generate a chat completions.",
-                    "tooltip": "Specify the messages for which you want to generate a chat completions.",
+                    "description": "Specify the message for which you want to generate a chat completion.",
+                    "tooltip": "Specify the message for which you want to generate a chat completion.",
                     "value": ""
                 },
                 {
