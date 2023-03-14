@@ -25,7 +25,7 @@ def chat_completions(config, params):
 def check(config):
     try:
         openai.api_key = config.get('apiKey')
-        result = openai.Engine.list()
+        result = openai.Model.list()
         return True
     except Exception as err:
         logger.error('{0}'.format(err))
