@@ -28,5 +28,7 @@ def check(config):
         result = openai.Model.list()
         return True
     except Exception as err:
-        logger.error('{0}'.format(err))
-        raise ConnectorError(err.error.get("message"))
+        if err.error:
+            logger.error('{0}'.format(err))
+            raise ConnectorError(err.error.get("message"))
+        raise ConnectorError('{0}'.format(err))

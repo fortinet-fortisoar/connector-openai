@@ -4,8 +4,11 @@
     "label": "OpenAI",
     "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
     "publisher": "Fortinet",
+    "cs_approved": true,
+    "cs_compatible": true,
     "icon_small_name": "small.png",
     "icon_large_name": "large.png",
+    "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/openai/534/openai-v1-0-0",
     "category": "Miscellaneous",
     "configuration": {
         "fields": [
@@ -73,7 +76,8 @@
                   }
                 ],
                 "created": ""
-            }
+            },
+            "enabled": true
         }
     ]
 }
