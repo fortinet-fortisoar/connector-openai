@@ -21,43 +21,18 @@
           "name": "Chat Completions",
           "aliasName": null,
           "tag": null,
-          "description": "Generate a completion for a given chat message using a pre-trained deep learning model.",
+          "description": "Creates a completion for a given chat message using a pre-trained deep learning model.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1678700908,
+          "lastModifyDate": 1679308887,
           "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e995819aaea",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
           "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Sample message completion",
-              "description": null,
-              "arguments": {
-                "name": "OpenAI",
-                "config": "d6b04965-114a-45a6-9e30-308cca314ecf",
-                "params": {
-                  "model": "gpt-3.5-turbo",
-                  "message": ""
-                },
-                "version": "1.0.0",
-                "connector": "openai",
-                "operation": "chat_completions",
-                "operationTitle": "Generate a chat completion",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "160",
-              "left": "120",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "6c487b6e-0e48-4613-8280-7d5c9153e887"
-            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
@@ -70,28 +45,56 @@
                 }
               },
               "status": null,
-              "top": "20",
-              "left": "120",
+              "top": "30",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
               "group": null,
               "uuid": "6d0e3551-72c9-403f-a25c-cb5f9734fd2b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create a chat completion",
+              "description": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "96cf9799-2a7d-4863-89be-c9cec58d63f4",
+                "params": {
+                  "model": "gpt-3.5-turbo",
+                  "top_p": "",
+                  "message": "",
+                  "max_tokens": "",
+                  "temperature": ""
+                },
+                "version": "1.0.0",
+                "connector": "openai",
+                "operation": "chat_completions",
+                "operationTitle": "Create a chat completion",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "cfa3e9f7-5c4f-4455-bbee-60bfa6ff9639"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Sample message completion",
-              "targetStep": "/api/3/workflow_steps/6c487b6e-0e48-4613-8280-7d5c9153e887",
+              "name": "Start -> Create a chat completion",
+              "targetStep": "/api/3/workflow_steps/cfa3e9f7-5c4f-4455-bbee-60bfa6ff9639",
               "sourceStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
               "label": null,
               "isExecuted": false,
-              "uuid": "16872105-c756-4c96-9ea0-189c2066ff1a"
+              "uuid": "1995c09b-de68-4669-881c-0ed6d3e9f456"
             }
           ],
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "6e37364f-5a82-47bb-89e5-101783153d6f",
-          "id": 6171,
+          "id": 6303,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
