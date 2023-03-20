@@ -8,6 +8,9 @@ def chat_completions(config, params):
     openai.api_key = config.get('apiKey')
     model = params.get('model', 'gpt-3.5-turbo')
     message = params.get('message')
+    temperature = params.get('temperature')
+    top_p = params.get('top_p')
+    max_tokens = params.get('max_tokens')
     messages = [
         {
             "role": "system",
@@ -18,8 +21,24 @@ def chat_completions(config, params):
             "content": message
         }
     ]
-    response = openai.ChatCompletion.create(model=model, messages=messages)
-    return response
+
+    if max_tokens and temperature and top_p:
+        return openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature,
+                                                        top_p=top_p, max_tokens=max_tokens)
+    elif max_tokens and temperature:
+        return openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens)
+    elif max_tokens and top_p:
+        return openai.ChatCompletion.create(model=model, messages=messages, top_p=top_p, max_tokens=max_tokens)
+    elif max_tokens:
+        return openai.ChatCompletion.create(model=model, messages=messages, max_tokens=max_tokens)
+    elif temperature and top_p:
+        return openai.ChatCompletion.create(model=model, messages=messages, top_p=top_p, temperature=temperature)
+    elif temperature:
+        return openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature)
+    elif top_p:
+        return openai.ChatCompletion.create(model=model, messages=messages, top_p=top_p)
+    else:
+        return openai.ChatCompletion.create(model=model, messages=messages)
 
 
 def check(config):
