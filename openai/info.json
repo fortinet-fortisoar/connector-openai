@@ -30,7 +30,7 @@
             "title": "Create a chat completion",
             "operation": "chat_completions",
             "annotation": "chat_completions",
-            "description": "Creates a completion for a given chat message using a pre-trained deep learning model.",
+            "description": "Generates a completion for a given chat message using a pre-trained deep learning model.",
             "parameters": [
                 {
                     "title": "Message",
@@ -61,8 +61,8 @@
                     "required": false,
                     "visible": true,
                     "editable": true,
-                    "description": "Specify sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Generally recommended to use this or Top Probability parameter but not both. By default it is set to 1.",
-                    "tooltip": "Specify sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Generally recommended to use this or Top Probability parameter but not both."
+                    "description": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1.",
+                    "tooltip": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1."
                 },
                 {
                     "title": "Top Probability",
@@ -71,8 +71,8 @@
                     "required": false,
                     "visible": true,
                     "editable": true,
-                    "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. Generally recommended to use this or Temperature but not both. By default it is set to 1.",
-                    "tooltip": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. Generally recommended to use this or Temperature but not both."
+                    "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1.",
+                    "tooltip": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1."
                 },
                 {
                     "title": "Max Tokens",
@@ -81,8 +81,8 @@
                     "required": false,
                     "visible": true,
                     "editable": true,
-                    "description": "Specify maximum number of tokens to generate in the chat completion. Note: The total length of input tokens and generated tokens is limited by the model's context length.",
-                    "tooltip": "Specify maximum number of tokens to generate in the chat completion. Note: The total length of input tokens and generated tokens is limited by the model's context length."
+                    "description": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
+                    "tooltip": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
                 }
             ],
             "category": "miscellaneous",
