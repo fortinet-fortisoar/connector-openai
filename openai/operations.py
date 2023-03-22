@@ -6,7 +6,9 @@ logger = get_logger(LOGGER_NAME)
 
 def chat_completions(config, params):
     openai.api_key = config.get('apiKey')
-    model = params.get('model', 'gpt-3.5-turbo')
+    model = params.get('model')
+    if not model:
+        model = 'gpt-3.5-turbo'
     message = params.get('message')
     temperature = params.get('temperature')
     top_p = params.get('top_p')
