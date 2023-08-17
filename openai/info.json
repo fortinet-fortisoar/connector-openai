@@ -1,113 +1,207 @@
 {
-    "name": "openai",
-    "version": "1.0.0",
-    "label": "OpenAI",
-    "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
-    "publisher": "Fortinet",
-    "cs_approved": true,
-    "cs_compatible": true,
-    "icon_small_name": "small.png",
-    "icon_large_name": "large.png",
-    "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/openai/534/openai-v1-0-0",
-    "category": "Miscellaneous",
-    "configuration": {
-        "fields": [
-            {
-                "title": "API Key",
-                "type": "password",
-                "name": "apiKey",
-                "description": "Specify the API key to access the endpoint to which you will connect and perform the automated operations",
-                "tooltip": "Specify the API key to access the endpoint to which you will connect and perform the automated operations",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": null
-            }
-        ]
+    "name":"openai",
+    "version":"1.1.0",
+    "label":"OpenAI",
+    "description":"This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
+    "publisher":"Fortinet",
+    "cs_approved":true,
+    "cs_compatible":true,
+    "icon_small_name":"small.png",
+    "icon_large_name":"large.png",
+    "help_online":"https://docs.fortinet.com/document/fortisoar/1.1.0/openai/534/openai-v1-1-0",
+    "category":"Miscellaneous",
+    "configuration":{
+       "fields":[
+          {
+             "title":"API Key",
+             "type":"password",
+             "name":"apiKey",
+             "description":"Specify the API key to access the endpoint to which you will connect and perform the automated operations",
+             "tooltip":"Specify the API key to access the endpoint to which you will connect and perform the automated operations",
+             "required":true,
+             "visible":true,
+             "editable":true,
+             "value":null
+          }
+       ]
     },
-    "operations": [
-        {
-            "title": "Create a chat completion",
-            "operation": "chat_completions",
-            "annotation": "chat_completions",
-            "description": "Generates a completion for a given chat message using a pre-trained deep learning model.",
-            "parameters": [
-                {
-                    "title": "Message",
-                    "type": "text",
-                    "name": "message",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "description": "Specify the message for which you want to generate a chat completion.",
-                    "tooltip": "Specify the message for which you want to generate a chat completion.",
-                    "value": ""
-                },
-                {
-                    "title": "Model",
-                    "type": "text",
-                    "name": "model",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "gpt-3.5-turbo",
-                    "description": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo.",
-                    "tooltip": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo."
-                },
-                {
-                    "title": "Temperature",
-                    "type": "text",
-                    "name": "temperature",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "description": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1.",
-                    "tooltip": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1."
-                },
-                {
-                    "title": "Top Probability",
-                    "type": "text",
-                    "name": "top_p",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1.",
-                    "tooltip": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1."
-                },
-                {
-                    "title": "Max Tokens",
-                    "type": "integer",
-                    "name": "max_tokens",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "description": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
-                    "tooltip": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
-                }
-            ],
-            "category": "miscellaneous",
-            "output_schema": {
-                "id": "",
-                "model": "",
-                "usage": {
-                  "total_tokens": "",
-                  "prompt_tokens": "",
-                  "completion_tokens": ""
-                },
-                "object": "",
-                "choices": [
-                  {
-                    "index": "",
-                    "message": {
-                      "role": "",
-                      "content": ""
-                    },
-                    "finish_reason": ""
-                  }
+    "operations":[
+       {
+          "title":"Create a chat completion",
+          "operation":"chat_completions",
+          "annotation":"chat_completions",
+          "description":"Generates responses for chat messages using a pre-trained deep learning model.",
+          "parameters":[
+             {
+                "title":"Chat Type",
+                "description":"Select whether it is a single question and answer or a conversation",
+                "tooltip":"Select whether it is a single question and answer or a conversation",
+                "required":true,
+                "editable":true,
+                "visible":true,
+                "type":"select",
+                "options":[
+                   "Question",
+                   "Conversation"
                 ],
-                "created": ""
-            },
-            "enabled": true
-        }
+                "name":"chat_type",
+                "placeholder":"",
+                "value":"Question",
+                "onchange":{
+                   "Question":[
+                      {
+                         "title":"Message",
+                         "type":"text",
+                         "name":"message",
+                         "required":true,
+                         "visible":true,
+                         "editable":true,
+                         "description":"Specify the message for which you want to generate a chat completion.",
+                         "tooltip":"Specify the message for which you want to generate a chat completion.",
+                         "value":""
+                      }
+                   ],
+                   "Conversation":[
+                      {
+                         "title":"Messages",
+                         "type":"json",
+                         "name":"messages",
+                         "required":true,
+                         "visible":true,
+                         "editable":true,
+                         "description":"Specify the messages list for which you want to generate a chat completion. It should include all previous chat messages as per OpenAI doc",
+                         "tooltip":"Specify the messages list for which you want to generate a chat completion. It should include all previous chat messages.",
+                         "value":"[{\"role\": \"user\", \"content\": \"when was stuxnet first seen\"},{\"role\": \"assistant\", \"content\": \"Stuxnet was first identified by the infosec community in 2010, but development on it probably began in 20051. I hope this helps!\"},{\"role\": \"user\", \"content\": \"who discovered it\"}]"
+                      }
+                   ]
+                }
+             },
+             {
+                "title":"Model",
+                "type":"text",
+                "name":"model",
+                "required":false,
+                "visible":true,
+                "editable":true,
+                "value":"gpt-3.5-turbo",
+                "description":"Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo.",
+                "tooltip":"Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo."
+             },
+             {
+                "title":"Temperature",
+                "type":"text",
+                "name":"temperature",
+                "required":false,
+                "visible":true,
+                "editable":true,
+                "description":"Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1.",
+                "tooltip":"Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1."
+             },
+             {
+                "title":"Top Probability",
+                "type":"text",
+                "name":"top_p",
+                "required":false,
+                "visible":true,
+                "editable":true,
+                "description":"Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1.",
+                "tooltip":"Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1."
+             },
+             {
+                "title":"Max Tokens",
+                "type":"integer",
+                "name":"max_tokens",
+                "required":false,
+                "visible":true,
+                "editable":true,
+                "description":"Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
+                "tooltip":"Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
+             }
+          ],
+          "category":"miscellaneous",
+          "output_schema":{
+             "id":"",
+             "model":"",
+             "usage":{
+                "total_tokens":"",
+                "prompt_tokens":"",
+                "completion_tokens":""
+             },
+             "object":"",
+             "choices":[
+                {
+                   "index":"",
+                   "message":{
+                      "role":"",
+                      "content":""
+                   },
+                   "finish_reason":""
+                }
+             ],
+             "created":""
+          },
+          "enabled":true
+       },
+       {
+         "operation": "list_models",
+         "title": "List Available Models",
+         "description": "Lists and describe the various models available in the API.",
+         "category": "miscellaneous",
+         "annotation": "list_models",
+         "enabled": true,
+         "parameters": [],
+         "output_schema": {
+            "object":"",
+            "data":[
+               {
+                  "id":"",
+                  "object":"",
+                  "created":"",
+                  "owned_by":""
+               }
+            ],
+            "object":""
+         }
+       },
+       {
+         "operation": "get_usage",
+         "title": "Get Tokens Usage",
+         "description": "Lists the usage for each call for a specific date",
+         "category": "miscellaneous",
+         "annotation": "get_usage",
+         "enabled": true,
+         "parameters": [
+            {
+               "title":"Date",
+               "type":"datetime",
+               "name":"date",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "description":"Date to fetch the report for.",
+               "tooltip":"Date to fetch the report for.",
+               "value":""
+            }
+         ],
+         "output_schema": {
+            "object":"",
+            "data":[
+               {
+                  "aggregation_timestamp":"",
+                  "n_requests":"",
+                  "operation":"",
+                  "snapshot_id":"",
+                  "n_context":"",
+                  "n_context_tokens_total":"",
+                  "n_generated":"",
+                  "n_generated_tokens_total":""
+               }
+            ],
+            "ft_data":"",
+            "dalle_api_data":"",
+            "whisper_api_data":"",
+            "current_usage_usd":""
+         }
+       }        
     ]
-}
+ }
