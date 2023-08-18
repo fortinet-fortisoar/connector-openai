@@ -9,6 +9,7 @@ class Openai(Connector):
 
     def execute(self, config, operation, params, *args, **kwargs):
         try:
+            params.update({'operation':operation})
             return supported_operations.get(operation)(config, params)
         except Exception as err:
             raise ConnectorError("Message: {0}".format(err))

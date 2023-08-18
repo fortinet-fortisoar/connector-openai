@@ -6,13 +6,15 @@ import arrow
 import re
 import json
 import requests
+from openai.api_requestor import APIRequestor
+from requests_toolbelt.utils import dump
 from bs4 import BeautifulSoup
 from jsonschema import validate
 from integrations.crudhub import maybe_json_or_raise
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
 logger = get_logger(LOGGER_NAME)
-#logger.setLevel(logging.DEBUG) # Uncomment to enable local debug
+logger.setLevel(logging.DEBUG) # Uncomment to enable local debug
 
 def _validate_json_schema(_instance, _schema):
     try:
@@ -30,16 +32,16 @@ def _remove_html_tags(text):
 
 def _build_messages(params):
     ''' builds the message list based on the chat type '''
-    chat_type = params.get('chat_type')    
+    operation = params.get('operation')    
     messages = [
         {
             "role": "system",
             "content": "Be concise and helpful assistant."
         }
     ]
-    if chat_type == 'Question':
+    if operation == 'chat_completions':
         messages.append({"role": "user","content": _remove_html_tags(params.get('message'))})
-    elif chat_type == 'Conversation':
+    elif operation == 'chat_conversation':
         replies =_validate_json_schema(params.get('messages'), MESSAGES_SCHEMA)
         for message in replies:
             message.update({'content':_remove_html_tags(message['content'])})
@@ -76,29 +78,24 @@ def chat_completions(config, params):
     else:
         return openai.ChatCompletion.create(model=model, messages=messages)
 
+
 def list_models(config, params):
     openai.api_key = config.get('apiKey')
     return openai.Model.list()
 
 
 def get_usage(config, params):
-    headers = {'Authorization':'Bearer ' + config.get('apiKey')}
+
     date = arrow.get(params.get('date',arrow.now().int_timestamp)).format('YYYY-MM-DD')
-    url = '{0}/{1}/usage'.format(BASE_URL, API_VERSION)
-    headers = {'Authorization':'Bearer ' + config.get('apiKey')}
-    logger.debug('Fetching usage report at" {0} on: {1}'.format(url,date))
-    response = requests.request('get', url, params={'date':date}, headers=headers)
-    if response.status_code == 200:
-        response_json = json.loads(response.content)
-        return response_json
-    else:
-        logger.error('Error fetching token usage: {0}'.format(response.content))
-        raise ConnectorError('Error fetching token usage: {0}'.format(response.content))
+    requestor = APIRequestor(key=config.get('apiKey'))
+    response = requestor.request_raw('get','/usage', params={'date':date})
+    logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
+    return response.json()
     
+
 def check(config):
     try:
-        openai.api_key = config.get('apiKey')
-        result = openai.Model.list()
+        list_models(config, {})
         return True
     except Exception as err:
         if err.error:
