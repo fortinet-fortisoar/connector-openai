@@ -3,6 +3,7 @@ from .operations import *
  
 supported_operations = {
     'chat_completions': chat_completions,
+    'chat_conversation': chat_completions,
     'list_models': list_models,
     'get_usage': get_usage
     }
