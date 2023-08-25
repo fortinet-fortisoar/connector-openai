@@ -1,20 +1,16 @@
 from sys import api_version
 from urllib import response
 import openai
-import logging
 import arrow
 import re
-import json
-import requests
 from openai.api_requestor import APIRequestor
 from requests_toolbelt.utils import dump
 from bs4 import BeautifulSoup
 from jsonschema import validate
-from integrations.crudhub import maybe_json_or_raise
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
 logger = get_logger(LOGGER_NAME)
-logger.setLevel(logging.DEBUG) # Uncomment to enable local debug
+# logger.setLevel(logging.DEBUG)
 
 def _validate_json_schema(_instance, _schema):
     try:
@@ -49,8 +45,25 @@ def _build_messages(params):
     return messages
 
 
-def chat_completions(config, params):
+def __init_openai(config):
     openai.api_key = config.get('apiKey')
+    openai_args = {"key": config.get('apiKey')}
+    api_type = config.get("api_type")
+    if api_type:
+        openai.api_type = "azure"
+        openai.api_base = config.get("api_base")
+        openai.api_version = config.get("api_version")
+        openai_args.update({
+            "api_base": config.get("api_base"),
+            "api_type": "azure",
+            "api_version": config.get("api_version")
+        })
+    return openai_args
+
+
+def chat_completions(config, params):
+    __init_openai(config)
+
     model = params.get('model')
     if not model:
         model = 'gpt-3.5-turbo'
@@ -60,34 +73,27 @@ def chat_completions(config, params):
     messages = _build_messages(params)
     logger.debug("Messages: {}".format(messages))
 
-    if max_tokens and temperature and top_p:
-        return openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature,
-                                                        top_p=top_p, max_tokens=max_tokens)
-    elif max_tokens and temperature:
-        return openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens)
-    elif max_tokens and top_p:
-        return openai.ChatCompletion.create(model=model, messages=messages, top_p=top_p, max_tokens=max_tokens)
-    elif max_tokens:
-        return openai.ChatCompletion.create(model=model, messages=messages, max_tokens=max_tokens)
-    elif temperature and top_p:
-        return openai.ChatCompletion.create(model=model, messages=messages, top_p=top_p, temperature=temperature)
-    elif temperature:
-        return openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature)
-    elif top_p:
-        return openai.ChatCompletion.create(model=model, messages=messages, top_p=top_p)
-    else:
-        return openai.ChatCompletion.create(model=model, messages=messages)
+    openai_args = {"model": model, "messages": messages}
+    if config.get("deployment_id"):
+        openai_args.update({"deployment_id": config.get("deployment_id")})
+    if temperature:
+        openai_args.update({"temperature": temperature})
+    if max_tokens:
+        openai_args.update({"max_tokens": max_tokens})
+    if top_p:
+        openai_args.update({"top_p": top_p})
+    return openai.ChatCompletion.create(**openai_args)
 
 
 def list_models(config, params):
-    openai.api_key = config.get('apiKey')
+    __init_openai(config)
     return openai.Model.list()
 
 
 def get_usage(config, params):
-
     date = arrow.get(params.get('date',arrow.now().int_timestamp)).format('YYYY-MM-DD')
-    requestor = APIRequestor(key=config.get('apiKey'))
+    request_args = __init_openai(config)
+    requestor = APIRequestor(**request_args)
     response = requestor.request_raw('get','/usage', params={'date':date})
     logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
     return response.json()
