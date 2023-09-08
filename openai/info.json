@@ -16,12 +16,61 @@
             "title":"API Key",
             "type":"password",
             "name":"apiKey",
-            "description":"Specify the API key to access the endpoint to which you will connect and perform the automated operations",
-            "tooltip":"Specify the API key to access the endpoint to which you will connect and perform the automated operations",
+            "description":"Specify your API key to authenticate the OpenAI endpoints",
+            "tooltip":"Your OpenAI API Key",
             "required":true,
             "visible":true,
             "editable":true,
             "value":null
+         },
+         {
+            "title":"Use Microsoft Azure OpenAI Endpoint",
+            "type": "checkbox",
+            "name":"api_type",
+            "description":"Select if you are using OpenAI services directly, or via a Microsoft Azure Endpoint",
+            "tooltip":"Select if you are using OpenAI services directly, or via a Microsoft Azure Endpoint",
+            "required":false,
+            "visible":true,
+            "editable":true,
+            "value":false,
+            "onchange": {
+               "true": [
+                  {
+                     "title": "Endpoint FQHN",
+                     "description": "Specify the Azure OpenAI Endpoint",
+                     "tooltip": "Specify the Azure OpenAI Endpoint",
+                     "name": "api_base",
+                     "type": "text",
+                     "visible": true,
+                     "editable": true,
+                     "required": true,
+                     "placeholder": "https://example-endpoint.openai.azure.com"
+                   },
+                   {
+                     "title": "API Version",
+                     "description": "Specify the Azure OpenAI API Version",
+                     "tooltip": "Specify the Azure OpenAI API Version",
+                     "name": "api_version",
+                     "type": "text",
+                     "visible": true,
+                     "editable": true,
+                     "required": true,
+                     "placeholder": "2023-05-15",
+                     "value": "2023-05-15"
+                   },
+                   {
+                     "title": "Deployment Name",
+                     "description": "The Azure OpenAI Deployment Name",
+                     "tooltip": "The Azure OpenAI Deployment Name",
+                     "name": "deployment_id",
+                     "type": "text",
+                     "visible": true,
+                     "editable": true,
+                     "required": true
+                   }
+               ]
+            }
+            
          }
       ]
    },
