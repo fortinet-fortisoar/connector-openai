@@ -9,6 +9,8 @@ from bs4 import BeautifulSoup
 from jsonschema import validate
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
+import tiktoken
+
 logger = get_logger(LOGGER_NAME)
 # logger.setLevel(logging.DEBUG)
 
@@ -97,6 +99,14 @@ def get_usage(config, params):
     response = requestor.request_raw('get','/usage', params={'date':date})
     logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
     return response.json()
+
+def count_tokens(config, params):
+    """Returns the number of tokens in a text string."""
+    input_text = params.get("input_text")
+    model = params.get("model")
+    encoding = tiktoken.encoding_for_model(model)
+    num_tokens = len(encoding.encode(input_text))
+    return {"tokens": num_tokens}
     
 
 def check(config):

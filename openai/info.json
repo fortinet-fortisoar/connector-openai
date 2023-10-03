@@ -302,6 +302,41 @@
             "whisper_api_data":"",
             "current_usage_usd":""
          }
+      },
+      {
+         "operation":"count_tokens",
+         "title":"Get Token Count",
+         "description":"Counts the number of tokens in a string",
+         "category":"miscellaneous",
+         "annotation":"count_tokens",
+         "enabled":true,
+         "parameters":[
+            {
+               "title":"Input Text",
+               "type":"text",
+               "name":"input_text",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "description":"The text input for which the token count is to be evaluated",
+               "tooltip":"The text input for which the token count is to be evaluated",
+               "value":""
+            },
+            {
+               "title":"Model",
+               "type":"text",
+               "name":"model",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "description":"The OpenAI model against which the token count is to be evaluated",
+               "tooltip":"The OpenAI model against which the token count is to be evaluated",
+               "value":"gpt-4"
+            }
+         ],
+         "output_schema":{
+            "tokens": 1024
+         }
       }
    ]
 }
