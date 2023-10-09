@@ -25,7 +25,7 @@ def _validate_json_schema(_instance, _schema):
 
 def _remove_html_tags(text):
     tag_stripped = BeautifulSoup(text, "html.parser").text
-    return re.sub(r'#\w+\s','',tag_stripped) 
+    return re.sub(r'@\w+\s','',tag_stripped) 
 
 
 def _build_messages(params):
