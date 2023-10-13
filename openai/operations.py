@@ -1,3 +1,9 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2023 Fortinet Inc
+Copyright end
+"""
 # from sys import api_version
 # from urllib import response
 import openai
