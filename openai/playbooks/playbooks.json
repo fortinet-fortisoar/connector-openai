@@ -2,396 +2,374 @@
   "type": "workflow_collections",
   "data": [
     {
+      "uuid": "fa4ce34b-f8cb-4764-87ad-ba30ec451368",
       "@type": "WorkflowCollection",
-      "name": "Sample - OpenAI - 1.1.0",
-      "description": "Sample playbooks for \"OpenAI\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
-      "visible": true,
-      "uuid": "ac435ba8-6c64-4207-95c1-7e9958191234",
-      "id": 88,
-      "deletedAt": null,
-      "importedBy": [],
-      "recordTags": [
-        "openai"
-      ],
       "workflows": [
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Ask a Question",
-          "aliasName": null,
-          "tag": null,
-          "description": "Generates a completion for a given chat message using a pre-trained deep learning model.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1692354858,
-          "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e9958191234",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
+          "uuid": "246baec2-309c-4cec-a4f3-ca05b88eb18b",
+          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
           "steps": [
             {
+              "uuid": "b5fb9806-c1f4-4131-a48e-967ffc9e9434",
               "@type": "WorkflowStep",
-              "name": "Create a chat completion",
+              "name": "Start",
               "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "b98aa927-4515-41d1-ad43-7a4d55e29dd7",
+              "@type": "WorkflowStep",
+              "name": "Ask a Question",
+              "description": null,
+              "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "96cf9799-2a7d-4863-89be-c9cec58d63f4",
+                "config": "''",
                 "params": {
-                  "model": "",
+                  "message": "",
+                  "model": "gpt-3.5-turbo",
+                  "temperature": "",
                   "top_p": "",
-                  "message": "when was stuxnet first seen",
-                  "max_tokens": "",
-                  "temperature": ""
+                  "max_tokens": ""
                 },
-                "version": "1.1.0",
+                "version": "2.0.0",
                 "connector": "openai",
                 "operation": "chat_completions",
-                "mock_result": "{\n  \"data\": {\n    \"id\": \"chatcmpl-7o6w5yXg7GX2Cti1UxkH2eDas0rSl\",\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"usage\": {\n      \"total_tokens\": 36,\n      \"prompt_tokens\": 24,\n      \"completion_tokens\": 12\n    },\n    \"object\": \"chat.completion\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": \"Stuxnet was first discovered in June 2010.\"\n        },\n        \"finish_reason\": \"stop\"\n      }\n    ],\n    \"created\": 1692177417\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null,\n  \"execution_time\": \"1 seconds 621 ms\"\n}",
-                "operationTitle": "Ask a Question",
-                "pickFromTenant": false,
-                "step_variables": []
+                "operationTitle": "Ask a Question"
               },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "cfa3e9f7-5c4f-4455-bbee-60bfa6ff9639"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  }
-                }
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "6d0e3551-72c9-403f-a25c-cb5f9734fd2b"
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Generates a completion for a given chat message using a pre-trained deep learning model.",
+          "name": "Ask a Question",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/b5fb9806-c1f4-4131-a48e-967ffc9e9434",
           "routes": [
             {
+              "uuid": "da7e998e-58ca-4faa-be95-027b26efe510",
               "@type": "WorkflowRoute",
-              "name": "Start -> Create a chat completion",
-              "targetStep": "/api/3/workflow_steps/cfa3e9f7-5c4f-4455-bbee-60bfa6ff9639",
-              "sourceStep": "/api/3/workflow_steps/6d0e3551-72c9-403f-a25c-cb5f9734fd2b",
               "label": null,
               "isExecuted": false,
-              "group": null,
-              "uuid": "1995c09b-de68-4669-881c-0ed6d3e9f456"
+              "name": "Start-> Ask a Question",
+              "sourceStep": "/api/3/workflow_steps/b5fb9806-c1f4-4131-a48e-967ffc9e9434",
+              "targetStep": "/api/3/workflow_steps/b98aa927-4515-41d1-ad43-7a4d55e29dd7"
             }
-          ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "6e37364f-5a82-47bb-89e5-101783153d6f",
-          "id": 1217,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "openai"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Converse with OpenAI",
-          "aliasName": null,
-          "tag": null,
-          "description": "Request a response based on previous questions/answers from OpenAI",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1692355052,
-          "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e9958191234",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/2206bd53-0d78-404d-a657-ca8d78048dfc",
+          "uuid": "3ed461f2-1fc9-438a-8a25-535eedcf2d6d",
+          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
           "steps": [
             {
+              "uuid": "46745073-d4ef-4ba4-b4da-21f7963d7054",
               "@type": "WorkflowStep",
-              "name": "Create a chat completion",
+              "name": "Start",
               "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "daf92e1e-484a-452e-8437-3a48a7faa7e1",
+              "@type": "WorkflowStep",
+              "name": "Converse With OpenAI",
+              "description": null,
+              "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "96cf9799-2a7d-4863-89be-c9cec58d63f4",
+                "config": "''",
                 "params": {
-                  "model": "gpt-3.5-turbo",
-                  "top_p": "",
                   "messages": "[{\"role\": \"user\", \"content\": \"when was stuxnet first seen\"},{\"role\": \"assistant\", \"content\": \"Stuxnet was first identified by the infosec community in 2010, but development on it probably began in 20051. I hope this helps!\"},{\"role\": \"user\", \"content\": \"who discovered it\"}]",
-                  "max_tokens": "",
-                  "temperature": ""
+                  "model": "gpt-3.5-turbo",
+                  "temperature": "",
+                  "top_p": "",
+                  "max_tokens": ""
                 },
-                "version": "1.1.0",
+                "version": "2.0.0",
                 "connector": "openai",
                 "operation": "chat_conversation",
-                "mock_result": "{\n  \"data\": {\n    \"id\": \"chatcmpl-7o6te0E8FwzbRSdRCI\",\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"usage\": {\n      \"total_tokens\": 125,\n      \"prompt_tokens\": 67,\n      \"completion_tokens\": 58\n    },\n    \"object\": \"chat.completion\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": \"Stuxnet was initially discovered by a Belarusian cybersecurity company called VirusBlokAda in collaboration with an Iranian cybersecurity expert named Mahmood Alavi. However, the broader recognition and analysis of Stuxnet were conducted by different cybersecurity organizations, including Symantec and Kaspersky Lab.\"\n        },\n        \"finish_reason\": \"stop\"\n      }\n    ],\n    \"created\": 1692177266\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null,\n  \"execution_time\": \"2 seconds 407 ms\"\n}",
-                "operationTitle": "Converse With OpenAI",
-                "pickFromTenant": false,
-                "step_variables": []
+                "operationTitle": "Converse With OpenAI"
               },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "408dde32-eb8c-49d2-b413-c85a21f9fc18"
-            },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Ask a question and get the AI answer based on the previous discussion you had.",
+          "name": "Converse With OpenAI",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/46745073-d4ef-4ba4-b4da-21f7963d7054",
+          "routes": [
             {
+              "uuid": "dfa0e345-2708-482a-bbc9-0f5e165390ed",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Converse With OpenAI",
+              "sourceStep": "/api/3/workflow_steps/46745073-d4ef-4ba4-b4da-21f7963d7054",
+              "targetStep": "/api/3/workflow_steps/daf92e1e-484a-452e-8437-3a48a7faa7e1"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "8882f30a-f582-452b-90be-8169fde80d56",
+          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "steps": [
+            {
+              "uuid": "f8c84da0-8e4a-460f-9321-98105cc46806",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "params": []
+                    "records": "{{vars.input.records[0]}}"
                   }
                 }
               },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "2206bd53-0d78-404d-a657-ca8d78048dfc"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Create a chat completion",
-              "targetStep": "/api/3/workflow_steps/408dde32-eb8c-49d2-b413-c85a21f9fc18",
-              "sourceStep": "/api/3/workflow_steps/2206bd53-0d78-404d-a657-ca8d78048dfc",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "a1969321-72ef-4a64-a7a3-f7d1f6679e4e"
-            }
-          ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "71c198a2-bffd-439f-b3a8-820419fa1196",
-          "id": 1223,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "openai"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Usage Report",
-          "aliasName": null,
-          "tag": null,
-          "description": "Fetches the token usage per specified day",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1692354750,
-          "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e9958191234",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/8fbeae16-29cb-4864-bcda-334cbc2b1ef6",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Tokens Usage",
-              "description": null,
-              "arguments": {
-                "name": "OpenAI",
-                "config": "d1c10444-0d08-41a2-ab7f-5433161bad1a",
-                "params": {
-                  "date": "{{arrow.now().int_timestamp}}"
-                },
-                "version": "1.1.0",
-                "connector": "openai",
-                "operation": "get_usage",
-                "operationTitle": "Get API Usage",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "8ce29846-eba5-4d6b-b635-46b673027ee7"
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
-              "@type": "WorkflowStep",
-              "name": "Results",
-              "description": null,
-              "arguments": {
-                "total_tokens_used": "{{vars.steps.Get_Tokens_Usage.data.data|json_query(\"[].n_context_tokens_total\")|sum}}"
-              },
-              "status": null,
-              "top": "300",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "group": null,
-              "uuid": "f401b969-aa26-415b-a6d8-6001ecaed62c"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  },
-                  "useMockOutput": "False"
-                }
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "8fbeae16-29cb-4864-bcda-334cbc2b1ef6"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get Tokens Usage -> Results",
-              "targetStep": "/api/3/workflow_steps/f401b969-aa26-415b-a6d8-6001ecaed62c",
-              "sourceStep": "/api/3/workflow_steps/8ce29846-eba5-4d6b-b635-46b673027ee7",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "39b37003-c61e-41c0-8847-5567ef7ded50"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Create a chat completion",
-              "targetStep": "/api/3/workflow_steps/8ce29846-eba5-4d6b-b635-46b673027ee7",
-              "sourceStep": "/api/3/workflow_steps/8fbeae16-29cb-4864-bcda-334cbc2b1ef6",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "672bd609-441c-48dd-85a8-8e9751b7d6e3"
-            }
-          ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "7fab8eca-9bdd-4481-a017-5bdb024382db",
-          "id": 1224,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "openai"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "List Available Models",
-          "aliasName": null,
-          "tag": null,
-          "description": "Fetches the list of currently available AI models from OpenAI",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1692177486,
-          "collection": "/api/3/workflow_collections/ac435ba8-6c64-4207-95c1-7e9958191234",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/b3347908-ab4f-4426-80a1-758e4feaea8f",
-          "steps": [
-            {
+              "uuid": "fcad6922-400d-4a2c-952d-995861136de3",
               "@type": "WorkflowStep",
               "name": "List Available Models",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "96cf9799-2a7d-4863-89be-c9cec58d63f4",
+                "config": "''",
                 "params": [],
-                "version": "1.1.0",
+                "version": "2.0.0",
                 "connector": "openai",
                 "operation": "list_models",
-                "mock_result": "{\n  \"data\": {\n    \"data\": [\n      {\n        \"id\": \"gpt-3.5-turbo-16k-0613\",\n        \"root\": \"gpt-3.5-turbo-16k-0613\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1685474247,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-cmxjWFbwkGLkErTi7k8aD2xy\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1692069715,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-davinci-001\",\n        \"root\": \"text-davinci-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649364042,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-CDlahk1RbkghXDjtxqzXoPNo\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690913868,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-curie-query-001\",\n        \"root\": \"text-search-curie-query-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-fNgpMH6ZEQulSq1CjzlfQuIe\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864192,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"davinci\",\n        \"root\": \"davinci\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649359874,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-8s5tCuiXSr3zT00nLwZGyMpS\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690930152,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-babbage-001\",\n        \"root\": \"text-babbage-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649364043,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-YABzYWjC1kS6M2BnI6Fr9vuS\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690913878,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"curie-instruct-beta\",\n        \"root\": \"curie-instruct-beta\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649364042,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-4GYfzAdSMcJmQvF7bsw01UWw\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690863785,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-davinci-003\",\n        \"root\": \"text-davinci-003\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1669599635,\n        \"owned_by\": \"openai-internal\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-a6niqBmW2JaGmo0fDO7FEt1n\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690930172,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"davinci-similarity\",\n        \"root\": \"davinci-similarity\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-XHJ9P2cvfDAl6Q6NABs6wD7G\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864520,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"code-davinci-edit-001\",\n        \"root\": \"code-davinci-edit-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649880484,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-T8Ie7SvlPyvtsDvPlfC8DftZ\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690915089,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-similarity-curie-001\",\n        \"root\": \"text-similarity-curie-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-ZQZGhVQCQSN4WC1wRJsFZfRL\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864230,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-embedding-ada-002\",\n        \"root\": \"text-embedding-ada-002\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1671217299,\n        \"owned_by\": \"openai-internal\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-F3BGCNGb0ChzFesHIYjbNYUX\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690865307,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"ada-code-search-text\",\n        \"root\": \"ada-code-search-text\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172510,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-jWFKGhnNYXhMIJuYYBe8zKoH\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864242,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-ada-query-001\",\n        \"root\": \"text-search-ada-query-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-YO36k119sJYqPB8yHh737z8l\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864529,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"babbage-search-query\",\n        \"root\": \"babbage-search-query\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-o5hcKERXLlTSB0nfq8fPkAzK\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864257,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"ada-similarity\",\n        \"root\": \"ada-similarity\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-Tz8CgePTpeDdl0q0mDxAseS4\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864543,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"gpt-3.5-turbo\",\n        \"root\": \"gpt-3.5-turbo\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1677610602,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-zy5TOjnE2zVaicIcKO9bQDgX\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864883,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-ada-doc-001\",\n        \"root\": \"text-search-ada-doc-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-WQoo7GOoaleCrrerQ8ROIejy\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864068,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-babbage-query-001\",\n        \"root\": \"text-search-babbage-query-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-PHk5XyJIMEk88v14M2eEcJfE\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864079,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"code-search-ada-code-001\",\n        \"root\": \"code-search-ada-code-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-lPJ8tQWzTuRpZpOjtRN4CjlP\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864269,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"curie-search-document\",\n        \"root\": \"curie-search-document\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172508,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-o3nt5yDhE7FpA8PtMlzGuW3k\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864552,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-davinci-query-001\",\n        \"root\": \"text-search-davinci-query-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-X2U9yi1RKudh1hGQ9CnPth2A\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864090,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-curie-doc-001\",\n        \"root\": \"text-search-curie-doc-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-7mOkCIwOIehlltLDPM1oSKN7\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864279,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"babbage-search-document\",\n        \"root\": \"babbage-search-document\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172510,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-FQiAIZXWHZ4yJl6b4X0JWpfw\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864561,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"babbage-code-search-text\",\n        \"root\": \"babbage-code-search-text\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-9AyTgRlbDLetEnvXKDgJvSvR\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864101,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"davinci-instruct-beta\",\n        \"root\": \"davinci-instruct-beta\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649364042,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-ZNpXjNy0lDniBWzpvi6w6wSU\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690842588,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"davinci-search-query\",\n        \"root\": \"davinci-search-query\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-w5yjX7u1Hgz0jJFhPRB93n6I\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864112,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-similarity-babbage-001\",\n        \"root\": \"text-similarity-babbage-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-8p0vOyyD6xVDYv6XOC4EYIin\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864583,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-davinci-002\",\n        \"root\": \"text-davinci-002\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649880484,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-Ao62Dd2uu76ec6Koq1ksR2rj\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864376,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"code-search-babbage-text-001\",\n        \"root\": \"code-search-babbage-text-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-uH251hsudZq0DqxtTcSYFTcD\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864593,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"babbage\",\n        \"root\": \"babbage\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649358449,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-vZIqTaVk4K37PezAFVHAEW3H\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690943947,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-davinci-doc-001\",\n        \"root\": \"text-search-davinci-doc-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-sqcSr7AYu6WYtzWgysHg1zO4\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864126,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"code-search-ada-text-001\",\n        \"root\": \"code-search-ada-text-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-1JbI0GFKw9luPgTJQut1uJNe\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864601,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"ada-search-query\",\n        \"root\": \"ada-search-query\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-cBtmsjrTZIJUKgjS8G6uALKM\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864138,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-similarity-ada-001\",\n        \"root\": \"text-similarity-ada-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-fSDlSniO72T5MvD6ieDRue0a\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864457,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"whisper-1\",\n        \"root\": \"whisper-1\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1677532384,\n        \"owned_by\": \"openai-internal\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-YfjOENC37iATh6VsjLLpYdeq\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1691514055,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"ada-code-search-code\",\n        \"root\": \"ada-code-search-code\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-469coJJMBDffmGlbftht9QR7\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864147,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"ada\",\n        \"root\": \"ada\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649357491,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-mEzQ65zcTNX233nYMXVZjvmy\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690950776,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-davinci-edit-001\",\n        \"root\": \"text-davinci-edit-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649809179,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-bwEWUtGiBcdX0p1D1ayafH8w\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690915020,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"davinci-search-document\",\n        \"root\": \"davinci-search-document\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-1jEFSTL1yLUnTyI8TekKPGQF\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864158,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"curie-search-query\",\n        \"root\": \"curie-search-query\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-fvYLh7mrZBoEXRa9teCq7ZsK\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864488,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"babbage-similarity\",\n        \"root\": \"babbage-similarity\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-XBmFjRKu34Qvm9Y8Vjg6si3V\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864610,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"ada-search-document\",\n        \"root\": \"ada-search-document\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-jEtYYVTVutQ4BLh2DnGd9tJt\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864171,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-ada-001\",\n        \"root\": \"text-ada-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649364042,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-jRuB7xBCdj159SqaDmpPgeWO\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690915029,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"text-similarity-davinci-001\",\n        \"root\": \"text-similarity-davinci-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172505,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-CoAjJ7mSHeO28X7KowOnwvj9\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864500,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"gpt-3.5-turbo-16k\",\n        \"root\": \"gpt-3.5-turbo-16k\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1683758102,\n        \"owned_by\": \"openai-internal\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-SQXsS1PDYLBrJJqTg15X1jeQ\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1691712126,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"curie\",\n        \"root\": \"curie\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649359874,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-0g6LBMO3cgUpTYzehqtF9G1i\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690950807,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"curie-similarity\",\n        \"root\": \"curie-similarity\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172510,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-gSmuEPu9Q8KjQhJ5myLNKIIV\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864620,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"gpt-3.5-turbo-0613\",\n        \"root\": \"gpt-3.5-turbo-0613\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1686587434,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-XIXH7QF7QM60DDcON9eaGFfk\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690842445,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"babbage-code-search-code\",\n        \"root\": \"babbage-code-search-code\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-UdNutuGVhzb5EBzlkaztBdMH\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864182,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"code-search-babbage-code-001\",\n        \"root\": \"code-search-babbage-code-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172507,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-0mO5qmzzKUVVVZ9MIHTnwjwK\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864510,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-search-babbage-doc-001\",\n        \"root\": \"text-search-babbage-doc-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1651172509,\n        \"owned_by\": \"openai-dev\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-dvJNsLdOcnLbIYlRZRnfQAfX\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690864628,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"text-curie-001\",\n        \"root\": \"text-curie-001\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1649364043,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-vcuXVPe8oCucYrY0hxBNBXRd\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1690915039,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"gpt-3.5-turbo-0301\",\n        \"root\": \"gpt-3.5-turbo-0301\",\n        \"object\": \"model\",\n        \"parent\": null,\n        \"created\": 1677649963,\n        \"owned_by\": \"openai\",\n        \"permission\": [\n          {\n            \"id\": \"modelperm-I4IcSJFYZl2fIK0DPSBkgK3d\",\n            \"group\": null,\n            \"object\": \"model_permission\",\n            \"created\": 1691712139,\n            \"allow_view\": true,\n            \"is_blocking\": false,\n            \"organization\": \"*\",\n            \"allow_logprobs\": true,\n            \"allow_sampling\": true,\n            \"allow_fine_tuning\": false,\n            \"allow_create_engine\": false,\n            \"allow_search_indices\": false\n          }\n        ]\n      }\n    ],\n    \"object\": \"list\"\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null,\n  \"execution_time\": \"1 seconds 101 ms\"\n}",
-                "operationTitle": "List Available Models",
-                "pickFromTenant": false,
-                "step_variables": []
+                "operationTitle": "List Available Models"
               },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "1094ce9f-8902-41c8-bbdb-b2a933ddc9fb"
-            },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Lists and describe the various models available in the API.",
+          "name": "List Available Models",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f8c84da0-8e4a-460f-9321-98105cc46806",
+          "routes": [
             {
+              "uuid": "622c09c5-1700-45a3-88fc-4861b18bea9b",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Available Models",
+              "sourceStep": "/api/3/workflow_steps/f8c84da0-8e4a-460f-9321-98105cc46806",
+              "targetStep": "/api/3/workflow_steps/fcad6922-400d-4a2c-952d-995861136de3"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c44043e7-2e9b-4300-9b00-c195d9e9aa23",
+          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "steps": [
+            {
+              "uuid": "7eba340a-fde0-42eb-9fc8-cf3f8e1377f1",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "params": []
+                    "records": "{{vars.input.records[0]}}"
                   }
                 }
               },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "db897ecf-f696-4739-8ea4-63b24ebb1911",
+              "@type": "WorkflowStep",
+              "name": "Get Tokens Usage",
+              "description": null,
               "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "b3347908-ab4f-4426-80a1-758e4feaea8f"
+              "arguments": {
+                "name": "OpenAI",
+                "config": "''",
+                "params": {
+                  "date": ""
+                },
+                "version": "2.0.0",
+                "connector": "openai",
+                "operation": "get_usage",
+                "operationTitle": "Get Tokens Usage"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Lists the usage for each call for a specific date",
+          "name": "Get Tokens Usage",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/7eba340a-fde0-42eb-9fc8-cf3f8e1377f1",
           "routes": [
             {
+              "uuid": "01be0b5d-9b31-42c2-a07d-75666109856a",
               "@type": "WorkflowRoute",
-              "name": "Start -> Create a chat completion",
-              "targetStep": "/api/3/workflow_steps/1094ce9f-8902-41c8-bbdb-b2a933ddc9fb",
-              "sourceStep": "/api/3/workflow_steps/b3347908-ab4f-4426-80a1-758e4feaea8f",
               "label": null,
               "isExecuted": false,
-              "group": null,
-              "uuid": "a2f32cd0-5f4e-466f-80e4-27ff610f2c20"
+              "name": "Start-> Get Tokens Usage",
+              "sourceStep": "/api/3/workflow_steps/7eba340a-fde0-42eb-9fc8-cf3f8e1377f1",
+              "targetStep": "/api/3/workflow_steps/db897ecf-f696-4739-8ea4-63b24ebb1911"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "f5fd4766-3161-415f-a459-44c1d101e875",
+          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "steps": [
+            {
+              "uuid": "78dcdf73-90f6-4fe4-8ed2-3f98b11e19df",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "373941e5-8a55-4cec-959a-bd467ce9d3a2",
+              "@type": "WorkflowStep",
+              "name": "Get Token Count",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "''",
+                "params": {
+                  "input_text": "",
+                  "model": "gpt-4"
+                },
+                "version": "2.0.0",
+                "connector": "openai",
+                "operation": "count_tokens",
+                "operationTitle": "Get Token Count"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
-          "groups": [],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "da00db71-5a80-4f9b-9ed2-ca8518708312",
-          "id": 1222,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
+          "triggerLimit": null,
+          "description": "Counts the number of tokens in a string",
+          "name": "Get Token Count",
+          "tag": "#OpenAI",
           "recordTags": [
+            "OpenAI",
             "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/78dcdf73-90f6-4fe4-8ed2-3f98b11e19df",
+          "routes": [
+            {
+              "uuid": "57fc677a-94c4-4a46-bcb1-6d04521c78e0",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Token Count",
+              "sourceStep": "/api/3/workflow_steps/78dcdf73-90f6-4fe4-8ed2-3f98b11e19df",
+              "targetStep": "/api/3/workflow_steps/373941e5-8a55-4cec-959a-bd467ce9d3a2"
+            }
           ]
         }
+      ],
+      "name": "Sample - OpenAI - 2.0.0",
+      "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
+      "visible": true,
+      "recordTags": [
+        "OpenAI",
+        "openai"
       ]
     }
-  ],
-  "exported_tags": [
-    "openai"
   ]
 }
