@@ -1,5 +1,11 @@
-from sys import api_version
-from urllib import response
+"""
+Copyright start
+MIT License
+Copyright (c) 2023 Fortinet Inc
+Copyright end
+"""
+# from sys import api_version
+# from urllib import response
 import openai
 import arrow
 import re
@@ -12,25 +18,28 @@ from .constants import *
 import tiktoken
 
 logger = get_logger(LOGGER_NAME)
+
+
 # logger.setLevel(logging.DEBUG)
+
 
 def _validate_json_schema(_instance, _schema):
     try:
         validate(instance=_instance, schema=_schema)
         return _instance
     except Exception as err:
-        logger.error("Error: {0} {1}".format(SCHEMA_ERROR,err))
-        raise ConnectorError("Error: {0} {1}".format(SCHEMA_ERROR,err))
-    
+        logger.error("Error: {0} {1}".format(SCHEMA_ERROR, err))
+        raise ConnectorError("Error: {0} {1}".format(SCHEMA_ERROR, err))
+
 
 def _remove_html_tags(text):
     tag_stripped = BeautifulSoup(text, "html.parser").text
-    return re.sub(r'#\w+\s','',tag_stripped) 
+    return re.sub(r'@\w+\s', '', tag_stripped)
 
 
 def _build_messages(params):
     ''' builds the message list based on the chat type '''
-    operation = params.get('operation')    
+    operation = params.get('operation')
     messages = [
         {
             "role": "system",
@@ -38,11 +47,11 @@ def _build_messages(params):
         }
     ]
     if operation == 'chat_completions':
-        messages.append({"role": "user","content": _remove_html_tags(params.get('message'))})
+        messages.append({"role": "user", "content": _remove_html_tags(params.get('message'))})
     elif operation == 'chat_conversation':
-        replies =_validate_json_schema(params.get('messages'), MESSAGES_SCHEMA)
+        replies = _validate_json_schema(params.get('messages'), MESSAGES_SCHEMA)
         for message in replies:
-            message.update({'content':_remove_html_tags(message['content'])})
+            message.update({'content': _remove_html_tags(message['content'])})
         messages = messages + replies
     return messages
 
@@ -65,7 +74,6 @@ def __init_openai(config):
 
 def chat_completions(config, params):
     __init_openai(config)
-
     model = params.get('model')
     if not model:
         model = 'gpt-3.5-turbo'
@@ -74,7 +82,6 @@ def chat_completions(config, params):
     max_tokens = params.get('max_tokens')
     messages = _build_messages(params)
     logger.debug("Messages: {}".format(messages))
-
     openai_args = {"model": model, "messages": messages}
     if config.get("deployment_id"):
         openai_args.update({"deployment_id": config.get("deployment_id")})
@@ -93,12 +100,13 @@ def list_models(config, params):
 
 
 def get_usage(config, params):
-    date = arrow.get(params.get('date',arrow.now().int_timestamp)).format('YYYY-MM-DD')
+    date = arrow.get(params.get('date', arrow.now().int_timestamp)).format('YYYY-MM-DD')
     request_args = __init_openai(config)
     requestor = APIRequestor(**request_args)
-    response = requestor.request_raw('get','/usage', params={'date':date})
+    response = requestor.request_raw('get', '/usage', params={'date': date})
     logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
     return response.json()
+
 
 def count_tokens(config, params):
     """Returns the number of tokens in a text string."""
@@ -107,7 +115,7 @@ def count_tokens(config, params):
     encoding = tiktoken.encoding_for_model(model)
     num_tokens = len(encoding.encode(input_text))
     return {"tokens": num_tokens}
-    
+
 
 def check(config):
     try:
