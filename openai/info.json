@@ -8,7 +8,7 @@
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/openai/706/openai-v2-0-0",
   "category": "Miscellaneous",
   "configuration": {
     "fields": [
@@ -16,8 +16,8 @@
         "title": "API Key",
         "type": "password",
         "name": "apiKey",
-        "description": "Specify your API key to authenticate the OpenAI endpoints",
-        "tooltip": "Your OpenAI API Key",
+        "description": "Specify the API key to access the endpoint to connect and perform automated operations. For information on how to get an API Key, see https://platform.openai.com/account/api-keys.",
+        "tooltip": "Specify the API key to access the endpoint to connect and perform automated operations.",
         "required": true,
         "visible": true,
         "editable": true,
@@ -27,8 +27,8 @@
         "title": "Use Microsoft Azure OpenAI Endpoint",
         "type": "checkbox",
         "name": "api_type",
-        "description": "Select if you are using OpenAI services directly, or via a Microsoft Azure Endpoint",
-        "tooltip": "Select if you are using OpenAI services directly, or via a Microsoft Azure Endpoint",
+        "description": "Select this option to use OpenAI services via a Microsoft Azure Endpoint.",
+        "tooltip": "Select this option to use OpenAI services via a Microsoft Azure Endpoint.",
         "required": false,
         "visible": true,
         "editable": true,
@@ -37,8 +37,8 @@
           "true": [
             {
               "title": "Endpoint FQHN",
-              "description": "Specify the Azure OpenAI Endpoint",
-              "tooltip": "Specify the Azure OpenAI Endpoint",
+              "description": "Specify the FQHN of the Azure OpenAI Endpoint to which you want to connect and perform automated operations.",
+              "tooltip": "Specify the FQHN of the Azure OpenAI Endpoint to which you want to connect and perform automated operations.",
               "name": "api_base",
               "type": "text",
               "visible": true,
@@ -48,8 +48,8 @@
             },
             {
               "title": "API Version",
-              "description": "Specify the Azure OpenAI API Version. For example 2023-05-15",
-              "tooltip": "Specify the Azure OpenAI API Version",
+              "description": "Specify the Azure OpenAI API version to be used for the connection. For example, 2023-05-15",
+              "tooltip": "Specify the Azure OpenAI API version to be used for the connection.",
               "name": "api_version",
               "type": "text",
               "visible": true,
@@ -60,8 +60,8 @@
             },
             {
               "title": "Deployment Name",
-              "description": "Specify the Azure OpenAI Deployment Name",
-              "tooltip": "Specify the Azure OpenAI Deployment Name",
+              "description": "Specify the deployment name of Azure OpenAI Deployment Name to be used for the connection.",
+              "tooltip": "Specify the deployment name of Azure OpenAI Deployment Name to be used for the connection.",
               "name": "deployment_id",
               "type": "text",
               "visible": true,
@@ -78,7 +78,7 @@
       "title": "Ask a Question",
       "operation": "chat_completions",
       "annotation": "chat_completions",
-      "description": "Generates a completion for a given chat message using a pre-trained deep learning model.",
+      "description": "Generates a contextually relevant response to a given question using a pre-trained deep learning model.",
       "parameters": [
         {
           "title": "Message",
@@ -87,8 +87,8 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "Specify the message for which you want to generate a chat completion.",
-          "tooltip": "Specify the message for which you want to generate a chat completion.",
+          "description": "Specify the message or question for which you want to generate a response.",
+          "tooltip": "Specify the message or question for which you want to generate a response.",
           "value": ""
         },
         {
@@ -99,7 +99,7 @@
           "visible": true,
           "editable": true,
           "value": "gpt-3.5-turbo",
-          "description": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo.",
+          "description": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default, it is set to gpt-3.5-turbo.",
           "tooltip": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported."
         },
         {
@@ -109,8 +109,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1.",
-          "tooltip": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both."
+          "description": "Specify the sampling temperature between 0 and 2. Higher values, such as, 0.8 make the output more random, while lower values make the output more focused and deterministic. NOTE: It is recommended to use either this parameter or the 'Top Probability' parameter, not both. By default, this parameter is set to 1.",
+          "tooltip": "Specify the sampling temperature between 0 and 2. Higher values, such as, 0.8 make the output more random, while lower values make the output more focused and deterministic. NOTE: It is recommended to use either this parameter or the 'Top Probability' parameter, not both."
         },
         {
           "title": "Top Probability",
@@ -119,7 +119,7 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1.",
+          "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or the 'Temperature' parameter, not both. By default, this parameter is set to 1.",
           "tooltip": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both."
         },
         {
@@ -129,7 +129,7 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
+          "description": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
           "tooltip": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
         }
       ],
@@ -161,7 +161,7 @@
       "title": "Converse With OpenAI",
       "operation": "chat_conversation",
       "annotation": "chat_conversation",
-      "description": "Ask a question and get the AI answer based on the previous discussion you had.",
+      "description": "Allows users to converse with OpenAI, i.e., users can ask a question and get the answer from OpenAI based on the previous discussions.",
       "parameters": [
         {
           "title": "Messages",
@@ -170,8 +170,8 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "Specify the messages list for which you want to generate a chat completion. It should include all previous chat messages as per OpenAI doc",
-          "tooltip": "Specify the messages list for which you want to generate a chat completion. It should include all previous chat messages.",
+          "description": "Specify the list of messages for which you want to generate a chat completion. The OpenAI documentation recommends that you should include all previous chat messages.",
+          "tooltip": "Specify the list of messages for which you want to generate a chat completion. The OpenAI documentation recommends that you should include all previous chat messages.",
           "value": "[{\"role\": \"user\", \"content\": \"when was stuxnet first seen\"},{\"role\": \"assistant\", \"content\": \"Stuxnet was first identified by the infosec community in 2010, but development on it probably began in 20051. I hope this helps!\"},{\"role\": \"user\", \"content\": \"who discovered it\"}]"
         },
         {
@@ -182,8 +182,8 @@
           "visible": true,
           "editable": true,
           "value": "gpt-3.5-turbo",
-          "description": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default it is set to gpt-3.5-turbo.",
-          "tooltip": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported."
+          "description": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default, it is set to gpt-3.5-turbo.",
+          "tooltip": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported. By default, it is set to gpt-3.5-turbo."
         },
         {
           "title": "Temperature",
@@ -192,8 +192,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both. By default, it is set to 1.",
-          "tooltip": "Specify the sampling temperature between 0 and 2. Higher values like 0.8 makes the output more random, while lower values like makes it more focused and deterministic. NOTE: It is recommended to use either this parameter or Top Probability parameter, not both."
+          "description": "Specify the sampling temperature between 0 and 2. Higher values, such as, 0.8 make the output more random, while lower values make the output more focused and deterministic. NOTE: It is recommended to use either this parameter or the 'Top Probability' parameter, not both. By default, this parameter is set to 1.",
+          "tooltip": "Specify the sampling temperature between 0 and 2. Higher values, such as, 0.8 make the output more random, while lower values make the output more focused and deterministic. NOTE: It is recommended to use either this parameter or the 'Top Probability' parameter, not both."
         },
         {
           "title": "Top Probability",
@@ -202,8 +202,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both. By default, it is set to 1.",
-          "tooltip": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both."
+          "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or the 'Temperature' parameter, not both. By default, this parameter is set to 1.",
+          "tooltip": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or the 'Temperature' parameter, not both."
         },
         {
           "title": "Max Tokens",
@@ -212,8 +212,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
-          "tooltip": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
+          "description": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
+          "tooltip": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
         }
       ],
       "category": "miscellaneous",
@@ -243,46 +243,45 @@
     {
       "operation": "list_models",
       "title": "List Available Models",
-      "description": "Lists and describe the various models available in the API.",
+      "description": "Retrieves a list and descriptions of all models available in the OpenAI API.",
       "category": "miscellaneous",
       "annotation": "list_models",
       "enabled": true,
-      "parameters": [
-      ],
+      "parameters": [],
       "output_schema": {
         "data": [
           {
-            "id": "text-search-babbage-doc-001",
-            "root": "text-search-babbage-doc-001",
-            "object": "model",
-            "parent": null,
-            "created": 1651172509,
-            "owned_by": "openai-dev",
+            "id": "",
+            "root": "",
+            "object": "",
+            "parent": "",
+            "created": "",
+            "owned_by": "",
             "permission": [
               {
-                "id": "modelperm-s9n5HnzbtVn7kNc5TIZWiCFS",
-                "group": null,
-                "object": "model_permission",
-                "created": 1695933794,
-                "allow_view": true,
-                "is_blocking": false,
-                "organization": "*",
-                "allow_logprobs": true,
-                "allow_sampling": true,
-                "allow_fine_tuning": false,
-                "allow_create_engine": false,
-                "allow_search_indices": true
+                "id": "",
+                "group": "",
+                "object": "",
+                "created": "",
+                "allow_view": "",
+                "is_blocking": "",
+                "organization": "",
+                "allow_logprobs": "",
+                "allow_sampling": "",
+                "allow_fine_tuning": "",
+                "allow_create_engine": "",
+                "allow_search_indices": ""
               }
             ]
           }
         ],
-        "object": "list"
+        "object": ""
       }
     },
     {
       "operation": "get_usage",
       "title": "Get Tokens Usage",
-      "description": "Lists the usage for each call for a specific date",
+      "description": "Retrieves the usage details for each OpenAI API call for the specified date.",
       "category": "miscellaneous",
       "annotation": "get_usage",
       "enabled": true,
@@ -294,8 +293,8 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "Specify the date for which you want to retrieve usage data.",
-          "tooltip": "Specify the date for which you want to retrieve usage data.",
+          "description": "Select the date for which you want to retrieve usage data for each OpenAI API call.",
+          "tooltip": "Select the date for which you want to retrieve usage data for each OpenAI API call.",
           "value": ""
         }
       ],
@@ -303,16 +302,16 @@
         "object": "",
         "data": [
           {
-            "user_id": null,
-            "n_context": 1,
-            "operation": "completion",
-            "n_requests": 1,
-            "n_generated": 1,
-            "snapshot_id": "gpt-4-0613",
-            "organization_id": "org-hSixPiy1paLvuyqZJVlNYLY5",
-            "aggregation_timestamp": 1697020800,
-            "n_context_tokens_total": 446,
-            "n_generated_tokens_total": 53
+            "user_id": "",
+            "n_context": "",
+            "operation": "",
+            "n_requests": "",
+            "n_generated": "",
+            "snapshot_id": "",
+            "organization_id": "",
+            "aggregation_timestamp": "",
+            "n_context_tokens_total": "",
+            "n_generated_tokens_total": ""
           }
         ],
         "ft_data": "",
@@ -324,7 +323,7 @@
     {
       "operation": "count_tokens",
       "title": "Get Token Count",
-      "description": "Counts the number of tokens in a string",
+      "description": "Counts the number of tokens in the specified string and OpenAI model.",
       "category": "miscellaneous",
       "annotation": "count_tokens",
       "enabled": true,
@@ -336,8 +335,8 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "Specify the text input for which the token count is to be evaluated",
-          "tooltip": "Specify the text input for which the token count is to be evaluated",
+          "description": "Specify the text input, i.e., the string for which you want to evaluate the token count.",
+          "tooltip": "Specify the text input, i.e., the string for which you want to evaluate the token count.",
           "value": ""
         },
         {
@@ -347,8 +346,8 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "The OpenAI model against which the token count is to be evaluated",
-          "tooltip": "The OpenAI model against which the token count is to be evaluated",
+          "description": "The OpenAI model using which you want to evaluate the token count. Specify the ID of the OpenAI model to use for the evaluation of token count. By default, this parameter is set to gpt-4.",
+          "tooltip": "The OpenAI model using which you want to evaluate the token count. Specify the ID of the OpenAI model to use for the evaluation of token count.",
           "value": "gpt-4"
         }
       ],
