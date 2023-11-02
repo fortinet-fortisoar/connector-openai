@@ -131,6 +131,17 @@
           "editable": true,
           "description": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
           "tooltip": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
+        },
+        {
+          "title": "Timeout",
+          "type": "integer",
+          "name": "timeout",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "600",
+          "description": "(Optional) Specify the maximum time (in seconds) you want to wait for the action to complete successfully. By default it is set to 600 seconds.",
+          "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
         }
       ],
       "category": "miscellaneous",
@@ -214,6 +225,17 @@
           "editable": true,
           "description": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
           "tooltip": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
+        },
+        {
+          "title": "Timeout",
+          "type": "integer",
+          "name": "timeout",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "600",
+          "description": "(Optional) Specify the maximum time (in seconds) you want to wait for the action to complete successfully. By default it is set to 600 seconds.",
+          "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
         }
       ],
       "category": "miscellaneous",

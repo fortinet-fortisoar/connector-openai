@@ -91,6 +91,7 @@ def chat_completions(config, params):
         openai_args.update({"max_tokens": max_tokens})
     if top_p:
         openai_args.update({"top_p": top_p})
+    openai_args['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return openai.ChatCompletion.create(**openai_args)
 
 
