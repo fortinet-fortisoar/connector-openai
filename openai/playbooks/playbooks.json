@@ -41,7 +41,8 @@
                   "model": "gpt-3.5-turbo",
                   "temperature": "",
                   "top_p": "",
-                  "max_tokens": ""
+                  "max_tokens": "",
+                  "timeout": 600
                 },
                 "version": "2.0.0",
                 "connector": "openai",
@@ -115,7 +116,8 @@
                   "model": "gpt-3.5-turbo",
                   "temperature": "",
                   "top_p": "",
-                  "max_tokens": ""
+                  "max_tokens": "",
+                  "timeout": 600
                 },
                 "version": "2.0.0",
                 "connector": "openai",
