@@ -2,16 +2,16 @@
   "type": "workflow_collections",
   "data": [
     {
-      "uuid": "fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+      "uuid": "033c380b-3d36-4289-b05c-a4e27a9ba0e8",
       "@type": "WorkflowCollection",
       "workflows": [
         {
           "@type": "Workflow",
-          "uuid": "246baec2-309c-4cec-a4f3-ca05b88eb18b",
-          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "uuid": "ce310b1e-2e0f-4b28-90c6-7876a4ad7101",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
-              "uuid": "b5fb9806-c1f4-4131-a48e-967ffc9e9434",
+              "uuid": "87f25b25-f202-4d15-91e0-e416240c27af",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
@@ -28,7 +28,7 @@
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
-              "uuid": "b98aa927-4515-41d1-ad43-7a4d55e29dd7",
+              "uuid": "857852c6-4ff2-4bd8-abc9-ffe11c97aa05",
               "@type": "WorkflowStep",
               "name": "Ask a Question",
               "description": null,
@@ -54,7 +54,7 @@
             }
           ],
           "triggerLimit": null,
-          "description": "Generates a completion for a given chat message using a pre-trained deep learning model.",
+          "description": "Generates a contextually relevant response to a given question using a pre-trained deep learning model.",
           "name": "Ask a Question",
           "tag": "#OpenAI",
           "recordTags": [
@@ -66,26 +66,26 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/b5fb9806-c1f4-4131-a48e-967ffc9e9434",
+          "triggerStep": "/api/3/workflow_steps/87f25b25-f202-4d15-91e0-e416240c27af",
           "routes": [
             {
-              "uuid": "da7e998e-58ca-4faa-be95-027b26efe510",
+              "uuid": "05e0f272-7d91-4778-b74a-6decad31471c",
               "@type": "WorkflowRoute",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Ask a Question",
-              "sourceStep": "/api/3/workflow_steps/b5fb9806-c1f4-4131-a48e-967ffc9e9434",
-              "targetStep": "/api/3/workflow_steps/b98aa927-4515-41d1-ad43-7a4d55e29dd7"
+              "sourceStep": "/api/3/workflow_steps/87f25b25-f202-4d15-91e0-e416240c27af",
+              "targetStep": "/api/3/workflow_steps/857852c6-4ff2-4bd8-abc9-ffe11c97aa05"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "3ed461f2-1fc9-438a-8a25-535eedcf2d6d",
-          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "uuid": "0ab054a6-b7f2-4f20-aa24-df16e42719ba",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
-              "uuid": "46745073-d4ef-4ba4-b4da-21f7963d7054",
+              "uuid": "cf83ceb1-1d37-44bc-aa7b-bbe339795c2f",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
@@ -102,7 +102,7 @@
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
-              "uuid": "daf92e1e-484a-452e-8437-3a48a7faa7e1",
+              "uuid": "8cfddd86-7fc6-46e1-a4fb-0dce042dcb21",
               "@type": "WorkflowStep",
               "name": "Converse With OpenAI",
               "description": null,
@@ -128,7 +128,7 @@
             }
           ],
           "triggerLimit": null,
-          "description": "Ask a question and get the AI answer based on the previous discussion you had.",
+          "description": "Allows users to converse with OpenAI, i.e., users can ask a question and get the answer from OpenAI based on the previous discussions.",
           "name": "Converse With OpenAI",
           "tag": "#OpenAI",
           "recordTags": [
@@ -140,26 +140,26 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/46745073-d4ef-4ba4-b4da-21f7963d7054",
+          "triggerStep": "/api/3/workflow_steps/cf83ceb1-1d37-44bc-aa7b-bbe339795c2f",
           "routes": [
             {
-              "uuid": "dfa0e345-2708-482a-bbc9-0f5e165390ed",
+              "uuid": "6c08ccb2-8640-4c7d-9c6c-4baf2bc8eec6",
               "@type": "WorkflowRoute",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Converse With OpenAI",
-              "sourceStep": "/api/3/workflow_steps/46745073-d4ef-4ba4-b4da-21f7963d7054",
-              "targetStep": "/api/3/workflow_steps/daf92e1e-484a-452e-8437-3a48a7faa7e1"
+              "sourceStep": "/api/3/workflow_steps/cf83ceb1-1d37-44bc-aa7b-bbe339795c2f",
+              "targetStep": "/api/3/workflow_steps/8cfddd86-7fc6-46e1-a4fb-0dce042dcb21"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "8882f30a-f582-452b-90be-8169fde80d56",
-          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "uuid": "a57c9326-a662-466e-8bf9-6ab932acae6f",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
-              "uuid": "f8c84da0-8e4a-460f-9321-98105cc46806",
+              "uuid": "dbc84b38-4538-45d7-8701-adb66bb3ed68",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
@@ -176,7 +176,7 @@
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
-              "uuid": "fcad6922-400d-4a2c-952d-995861136de3",
+              "uuid": "23b1235e-6288-41a2-96e0-b202cbf0a269",
               "@type": "WorkflowStep",
               "name": "List Available Models",
               "description": null,
@@ -196,7 +196,7 @@
             }
           ],
           "triggerLimit": null,
-          "description": "Lists and describe the various models available in the API.",
+          "description": "Retrieves a list and descriptions of all models available in the OpenAI API.",
           "name": "List Available Models",
           "tag": "#OpenAI",
           "recordTags": [
@@ -208,26 +208,26 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/f8c84da0-8e4a-460f-9321-98105cc46806",
+          "triggerStep": "/api/3/workflow_steps/dbc84b38-4538-45d7-8701-adb66bb3ed68",
           "routes": [
             {
-              "uuid": "622c09c5-1700-45a3-88fc-4861b18bea9b",
+              "uuid": "cebb6c4e-adaa-4f1a-b895-ec094c3dc3c7",
               "@type": "WorkflowRoute",
               "label": null,
               "isExecuted": false,
               "name": "Start-> List Available Models",
-              "sourceStep": "/api/3/workflow_steps/f8c84da0-8e4a-460f-9321-98105cc46806",
-              "targetStep": "/api/3/workflow_steps/fcad6922-400d-4a2c-952d-995861136de3"
+              "sourceStep": "/api/3/workflow_steps/dbc84b38-4538-45d7-8701-adb66bb3ed68",
+              "targetStep": "/api/3/workflow_steps/23b1235e-6288-41a2-96e0-b202cbf0a269"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "c44043e7-2e9b-4300-9b00-c195d9e9aa23",
-          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "uuid": "08d10af7-dded-46a6-ad65-5154e635afa0",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
-              "uuid": "7eba340a-fde0-42eb-9fc8-cf3f8e1377f1",
+              "uuid": "74d1aee7-41bb-4685-b379-c9bb6ebf5f2e",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
@@ -244,7 +244,7 @@
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
-              "uuid": "db897ecf-f696-4739-8ea4-63b24ebb1911",
+              "uuid": "6b82d68f-a37b-4875-a223-ec94d6cf0f67",
               "@type": "WorkflowStep",
               "name": "Get Tokens Usage",
               "description": null,
@@ -266,7 +266,7 @@
             }
           ],
           "triggerLimit": null,
-          "description": "Lists the usage for each call for a specific date",
+          "description": "Retrieves the usage details for each OpenAI API call for the specified date.",
           "name": "Get Tokens Usage",
           "tag": "#OpenAI",
           "recordTags": [
@@ -278,26 +278,26 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/7eba340a-fde0-42eb-9fc8-cf3f8e1377f1",
+          "triggerStep": "/api/3/workflow_steps/74d1aee7-41bb-4685-b379-c9bb6ebf5f2e",
           "routes": [
             {
-              "uuid": "01be0b5d-9b31-42c2-a07d-75666109856a",
+              "uuid": "95b8449b-d8da-4158-b84b-d80ecdffe62b",
               "@type": "WorkflowRoute",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Tokens Usage",
-              "sourceStep": "/api/3/workflow_steps/7eba340a-fde0-42eb-9fc8-cf3f8e1377f1",
-              "targetStep": "/api/3/workflow_steps/db897ecf-f696-4739-8ea4-63b24ebb1911"
+              "sourceStep": "/api/3/workflow_steps/74d1aee7-41bb-4685-b379-c9bb6ebf5f2e",
+              "targetStep": "/api/3/workflow_steps/6b82d68f-a37b-4875-a223-ec94d6cf0f67"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "f5fd4766-3161-415f-a459-44c1d101e875",
-          "collection": "/api/3/workflow_collections/fa4ce34b-f8cb-4764-87ad-ba30ec451368",
+          "uuid": "1b0faeb2-16ec-4a71-a6e2-995dd364c9c4",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
-              "uuid": "78dcdf73-90f6-4fe4-8ed2-3f98b11e19df",
+              "uuid": "5ea76c33-e60b-4cb0-83d5-e84dce81fd7d",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
@@ -314,7 +314,7 @@
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
-              "uuid": "373941e5-8a55-4cec-959a-bd467ce9d3a2",
+              "uuid": "345a6325-183a-429e-bbfb-979af97e0f3d",
               "@type": "WorkflowStep",
               "name": "Get Token Count",
               "description": null,
@@ -337,7 +337,7 @@
             }
           ],
           "triggerLimit": null,
-          "description": "Counts the number of tokens in a string",
+          "description": "Counts the number of tokens in the specified string and OpenAI model.",
           "name": "Get Token Count",
           "tag": "#OpenAI",
           "recordTags": [
@@ -349,16 +349,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/78dcdf73-90f6-4fe4-8ed2-3f98b11e19df",
+          "triggerStep": "/api/3/workflow_steps/5ea76c33-e60b-4cb0-83d5-e84dce81fd7d",
           "routes": [
             {
-              "uuid": "57fc677a-94c4-4a46-bcb1-6d04521c78e0",
+              "uuid": "06e4beaa-2a9e-4ebe-bb9d-20cf285fcd87",
               "@type": "WorkflowRoute",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Token Count",
-              "sourceStep": "/api/3/workflow_steps/78dcdf73-90f6-4fe4-8ed2-3f98b11e19df",
-              "targetStep": "/api/3/workflow_steps/373941e5-8a55-4cec-959a-bd467ce9d3a2"
+              "sourceStep": "/api/3/workflow_steps/5ea76c33-e60b-4cb0-83d5-e84dce81fd7d",
+              "targetStep": "/api/3/workflow_steps/345a6325-183a-429e-bbfb-979af97e0f3d"
             }
           ]
         }
