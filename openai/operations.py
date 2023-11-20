@@ -105,8 +105,7 @@ def list_models(config, params):
 
 def get_usage(config, params):
     date = arrow.get(params.get('date', arrow.now().int_timestamp)).format('YYYY-MM-DD')
-    url = 'https://api.openai.com/v1/usage'
-    response = make_request_rest_api_call(config, url=url, params={'date': date})
+    response = make_rest_call(config, url=USAGE_URL, params={'date': date})
     logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
     return response
 
@@ -131,7 +130,7 @@ def check(config):
         raise ConnectorError('{0}'.format(err))
 
 
-def make_request_rest_api_call(config, url, method='GET', **kwargs):
+def make_rest_call(config, url, method='GET', **kwargs):
     try:
         headers = {
             "Authorization": "Bearer {0}".format(config.get('apiKey'))

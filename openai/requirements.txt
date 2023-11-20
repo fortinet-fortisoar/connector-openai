@@ -1,4 +1,4 @@
 # Add Python Dependencies
-openai
+openai>=1.0.0
 jsonschema
 tiktoken

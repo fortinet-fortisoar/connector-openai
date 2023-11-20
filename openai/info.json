@@ -144,15 +144,17 @@
           "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
         },
         {
-          "title": "Other Fields",
+          "title": "Additional Inputs",
           "type": "json",
           "name": "other_fields",
           "required": false,
           "visible": true,
+          "value": {
+            "seed": 123
+          },
           "editable": true,
-          "value": "600",
-          "description": "(Optional) Specify the other parameters in json format.",
-          "tooltip": "Specify the other parameters in json format."
+          "description": "(Optional) Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          },",
+          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair."
         }
       ],
       "category": "miscellaneous",
@@ -249,15 +251,17 @@
           "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
         },
         {
-          "title": "Other Fields",
+          "title": "Additional Inputs",
           "type": "json",
           "name": "other_fields",
           "required": false,
           "visible": true,
           "editable": true,
-          "value": "600",
-          "description": "(Optional) Specify the other parameters in json format.",
-          "tooltip": "Specify the other parameters in json format."
+          "value": {
+            "seed": 123
+          },
+          "description": "(Optional) Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          },",
+          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair."
         }
       ],
       "category": "miscellaneous",
