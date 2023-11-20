@@ -142,6 +142,17 @@
           "value": "600",
           "description": "(Optional) Specify the maximum time (in seconds) you want to wait for the action to complete successfully. By default it is set to 600 seconds.",
           "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
+        },
+        {
+          "title": "Other Fields",
+          "type": "json",
+          "name": "other_fields",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "600",
+          "description": "(Optional) Specify the other parameters in json format.",
+          "tooltip": "Specify the other parameters in json format."
         }
       ],
       "category": "miscellaneous",
@@ -236,6 +247,17 @@
           "value": "600",
           "description": "(Optional) Specify the maximum time (in seconds) you want to wait for the action to complete successfully. By default it is set to 600 seconds.",
           "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
+        },
+        {
+          "title": "Other Fields",
+          "type": "json",
+          "name": "other_fields",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "600",
+          "description": "(Optional) Specify the other parameters in json format.",
+          "tooltip": "Specify the other parameters in json format."
         }
       ],
       "category": "miscellaneous",

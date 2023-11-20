@@ -9,13 +9,13 @@ Copyright end
 import openai
 import arrow
 import re
-from openai.api_requestor import APIRequestor
 from requests_toolbelt.utils import dump
 from bs4 import BeautifulSoup
 from jsonschema import validate
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
 import tiktoken
+import requests
 
 logger = get_logger(LOGGER_NAME)
 
@@ -62,10 +62,10 @@ def __init_openai(config):
     api_type = config.get("api_type")
     if api_type:
         openai.api_type = "azure"
-        openai.api_base = config.get("api_base")
+        openai.base_url = config.get("api_base")
         openai.api_version = config.get("api_version")
         openai_args.update({
-            "api_base": config.get("api_base"),
+            "base_url": config.get("api_base"),
             "api_type": "azure",
             "api_version": config.get("api_version")
         })
@@ -83,6 +83,7 @@ def chat_completions(config, params):
     messages = _build_messages(params)
     logger.debug("Messages: {}".format(messages))
     openai_args = {"model": model, "messages": messages}
+    other_fields = params.get('other_fields', {})
     if config.get("deployment_id"):
         openai_args.update({"deployment_id": config.get("deployment_id")})
     if temperature:
@@ -91,23 +92,23 @@ def chat_completions(config, params):
         openai_args.update({"max_tokens": max_tokens})
     if top_p:
         openai_args.update({"top_p": top_p})
+    if other_fields:
+        openai_args.update(other_fields)
     openai_args['timeout'] = params.get('timeout') if params.get('timeout') else 600
-    openai_args['request_timeout'] = openai_args.get('timeout')
-    return openai.ChatCompletion.create(**openai_args)
+    return openai.chat.completions.create(**openai_args).model_dump()
 
 
 def list_models(config, params):
     __init_openai(config)
-    return openai.Model.list()
+    return openai.models.list().model_dump()
 
 
 def get_usage(config, params):
     date = arrow.get(params.get('date', arrow.now().int_timestamp)).format('YYYY-MM-DD')
-    request_args = __init_openai(config)
-    requestor = APIRequestor(**request_args)
-    response = requestor.request_raw('get', '/usage', params={'date': date})
+    url = 'https://api.openai.com/v1/usage'
+    response = make_request_rest_api_call(config, url=url, params={'date': date})
     logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
-    return response.json()
+    return response
 
 
 def count_tokens(config, params):
@@ -124,7 +125,39 @@ def check(config):
         list_models(config, {})
         return True
     except Exception as err:
+        logger.error('{0}'.format(err))
         if err.error:
-            logger.error('{0}'.format(err))
             raise ConnectorError(err.error.get("message"))
         raise ConnectorError('{0}'.format(err))
+
+
+def make_request_rest_api_call(config, url, method='GET', **kwargs):
+    try:
+        headers = {
+            "Authorization": "Bearer {0}".format(config.get('apiKey'))
+        }
+        try:
+            from connectors.debug_utils.curl_script import make_curl
+            debug_headers = headers.copy() if headers else None
+            debug_headers["Authorization"] = "*****************"
+            make_curl(method=method, url=url, headers=debug_headers, **kwargs)
+        except Exception as err:
+            logger.info("Error: {0}".format(err))
+        response = requests.request(method=method, url=url, headers=headers, **kwargs)
+        if response.ok:
+            return response.json()
+        else:
+            try:
+                logger.error("Error: {0}".format(response.json()))
+                raise ConnectorError('Error: {0}'.format(response.json()))
+            except Exception as error:
+                raise ConnectorError('{0}'.format(response.text if response.text else str(response)))
+    except requests.exceptions.SSLError as e:
+        logger.exception('{0}'.format(e))
+        raise ConnectorError('{0}'.format(e))
+    except requests.exceptions.ConnectionError as e:
+        logger.exception('{0}'.format(e))
+        raise ConnectorError('{0}'.format(e))
+    except Exception as e:
+        logger.error('{0}'.format(e))
+        raise ConnectorError('{0}'.format(e))
