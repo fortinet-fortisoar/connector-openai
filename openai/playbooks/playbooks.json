@@ -42,10 +42,7 @@
                   "temperature": "",
                   "top_p": "",
                   "max_tokens": "",
-                  "timeout": 600,
-                  "other_fields": {
-                    "seed": 123
-                  }
+                  "timeout": 600
                 },
                 "version": "2.0.0",
                 "connector": "openai",
@@ -120,10 +117,7 @@
                   "temperature": "",
                   "top_p": "",
                   "max_tokens": "",
-                  "timeout": 600,
-                  "other_fields": {
-                    "seed": 123
-                  }
+                  "timeout": 600
                 },
                 "version": "2.0.0",
                 "connector": "openai",

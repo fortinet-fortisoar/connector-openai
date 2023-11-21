@@ -149,12 +149,9 @@
           "name": "other_fields",
           "required": false,
           "visible": true,
-          "value": {
-            "seed": 123
-          },
           "editable": true,
-          "description": "(Optional) Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          },",
-          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair."
+          "description": "(Optional) Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          }",
+          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          }"
         }
       ],
       "category": "miscellaneous",
@@ -172,12 +169,15 @@
             "index": "",
             "message": {
               "role": "",
-              "content": ""
+              "content": "",
+              "tool_calls": "",
+              "function_call": ""
             },
             "finish_reason": ""
           }
         ],
-        "created": ""
+        "created": "",
+        "system_fingerprint": ""
       },
       "enabled": true
     },
@@ -257,11 +257,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "value": {
-            "seed": 123
-          },
           "description": "(Optional) Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          },",
-          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair."
+          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          },"
         }
       ],
       "category": "miscellaneous",
@@ -279,12 +276,15 @@
             "index": "",
             "message": {
               "role": "",
-              "content": ""
+              "content": "",
+              "tool_calls": "",
+              "function_call": ""
             },
             "finish_reason": ""
           }
         ],
-        "created": ""
+        "created": "",
+        "system_fingerprint": ""
       },
       "enabled": true
     },
@@ -300,27 +300,9 @@
         "data": [
           {
             "id": "",
-            "root": "",
             "object": "",
-            "parent": "",
             "created": "",
-            "owned_by": "",
-            "permission": [
-              {
-                "id": "",
-                "group": "",
-                "object": "",
-                "created": "",
-                "allow_view": "",
-                "is_blocking": "",
-                "organization": "",
-                "allow_logprobs": "",
-                "allow_sampling": "",
-                "allow_fine_tuning": "",
-                "allow_create_engine": "",
-                "allow_search_indices": ""
-              }
-            ]
+            "owned_by": ""
           }
         ],
         "object": ""
@@ -347,14 +329,11 @@
         }
       ],
       "output_schema": {
-        "object": "",
         "data": [
           {
             "user_id": "",
-            "n_context": "",
             "operation": "",
             "n_requests": "",
-            "n_generated": "",
             "snapshot_id": "",
             "organization_id": "",
             "aggregation_timestamp": "",
@@ -362,10 +341,10 @@
             "n_generated_tokens_total": ""
           }
         ],
-        "ft_data": "",
-        "dalle_api_data": "",
-        "whisper_api_data": "",
-        "current_usage_usd": ""
+        "object": "",
+        "ft_data": [],
+        "dalle_api_data": [],
+        "whisper_api_data": []
       }
     },
     {

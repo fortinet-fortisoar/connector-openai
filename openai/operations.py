@@ -105,8 +105,18 @@ def list_models(config, params):
 
 def get_usage(config, params):
     date = arrow.get(params.get('date', arrow.now().int_timestamp)).format('YYYY-MM-DD')
-    response = make_rest_call(config, url=USAGE_URL, params={'date': date})
-    logger.debug('Request \n:{}'.format(dump.dump_all(response).decode('utf-8')))
+    query_param = {'date': date}
+    api_type = config.get("api_type")
+    if api_type:
+        base_url = config.get("api_base").strip("/")
+        if base_url.startswith('http') or base_url.startswith('https'):
+            url = "{0}/openai/deployments/{1}/usage".format(base_url, config.get('deployment_id'))
+        else:
+            url = "https://{0}/openai/deployments/{1}/usage".format(base_url, config.get('deployment_id'))
+        query_param["api-version"] = config.get('api_version')
+    else:
+        url = USAGE_URL
+    response = make_rest_call(config, url=url, params=query_param)
     return response
 
 
