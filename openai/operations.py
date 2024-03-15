@@ -16,6 +16,8 @@ from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
 import tiktoken
 import requests
+import httpx
+import os
 
 logger = get_logger(LOGGER_NAME)
 
@@ -56,24 +58,30 @@ def _build_messages(params):
     return messages
 
 
-def __init_openai(config):
-    openai.api_key = config.get('apiKey')
-    openai_args = {"key": config.get('apiKey')}
+def __init_openai(config, openai_args = {}):
+    openai_args.update({
+        "api_key": config.get('apiKey')
+        }
+    )
     api_type = config.get("api_type")
     if api_type:
-        openai.api_type = "azure"
-        openai.base_url = config.get("api_base")
-        openai.api_version = config.get("api_version")
         openai_args.update({
             "base_url": config.get("api_base"),
             "api_type": "azure",
             "api_version": config.get("api_version")
         })
-    return openai_args
+    https_proxy = os.environ.get('HTTPS_PROXY')
+    no_proxy = os.environ.get('NO_PROXY', 'localhost')
+    if https_proxy and (not (openai.base_url and openai.base_url in no_proxy) or ('api.openai.com' in no_proxy)):
+        openai_client = openai.OpenAI(http_client=httpx.Client(proxy=https_proxy, verify=False), **openai_args)
+    else:
+       openai_client = openai.OpenAI(**openai_args)
+    return openai_client
 
 
 def chat_completions(config, params):
-    __init_openai(config)
+    client_args = {'timeout':  params.get('timeout') if params.get('timeout') else 600}
+    openai_client = __init_openai(config, client_args)
     model = params.get('model')
     if not model:
         model = 'gpt-3.5-turbo'
@@ -82,7 +90,7 @@ def chat_completions(config, params):
     max_tokens = params.get('max_tokens')
     messages = _build_messages(params)
     logger.debug("Messages: {}".format(messages))
-    openai_args = {"model": model, "messages": messages}
+    openai_args={"model": model, "messages": messages}
     other_fields = params.get('other_fields', {})
     if config.get("deployment_id"):
         openai_args.update({"deployment_id": config.get("deployment_id")})
@@ -94,13 +102,13 @@ def chat_completions(config, params):
         openai_args.update({"top_p": top_p})
     if other_fields:
         openai_args.update(other_fields)
-    openai_args['timeout'] = params.get('timeout') if params.get('timeout') else 600
-    return openai.chat.completions.create(**openai_args).model_dump()
+
+    return openai_client.chat.completions.create(**openai_args).model_dump()
 
 
 def list_models(config, params):
-    __init_openai(config)
-    return openai.models.list().model_dump()
+    openai_client = __init_openai(config)
+    return openai_client.models.list().model_dump()
 
 
 def get_usage(config, params):
@@ -135,7 +143,7 @@ def check(config):
         return True
     except Exception as err:
         logger.error('{0}'.format(err))
-        if err.error:
+        if hasattr(err, 'error'):
             raise ConnectorError(err.error.get("message"))
         raise ConnectorError('{0}'.format(err))
 
