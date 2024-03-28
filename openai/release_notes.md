@@ -1,4 +1,4 @@
 #### What's Improved
 - Added a new configuration parameter `Verify SSL`.
-- Initialized httpx client with proxy if proxy is configured in the environment.
+- Added Network Proxy support. API call to openai endpoint will be routed via the network proxy if proxy is configured for the FortiSOAR instance.
 
