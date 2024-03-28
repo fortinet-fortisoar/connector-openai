@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2023 Fortinet Inc
+Copyright (c) 2024 Fortinet Inc
 Copyright end
 """
 # from sys import api_version
@@ -9,7 +9,6 @@ Copyright end
 import openai
 import arrow
 import re
-from requests_toolbelt.utils import dump
 from bs4 import BeautifulSoup
 from jsonschema import validate
 from connectors.core.connector import get_logger, ConnectorError
@@ -58,30 +57,33 @@ def _build_messages(params):
     return messages
 
 
-def __init_openai(config, openai_args = {}):
-    openai_args.update({
-        "api_key": config.get('apiKey')
-        }
-    )
+def __init_openai(config):
+    openai.api_key = config.get('apiKey')
+    openai_args = {"key": config.get('apiKey')}
     api_type = config.get("api_type")
+    https_proxy = os.environ.get('HTTPS_PROXY')
+    no_proxy = os.environ.get('NO_PROXY', 'localhost')
+    base_url = 'api.openai.com'
     if api_type:
+        openai.api_type = "azure"
+        openai.base_url = config.get("api_base")
+        openai.api_version = config.get("api_version")
         openai_args.update({
             "base_url": config.get("api_base"),
             "api_type": "azure",
             "api_version": config.get("api_version")
         })
-    https_proxy = os.environ.get('HTTPS_PROXY')
-    no_proxy = os.environ.get('NO_PROXY', 'localhost')
-    if https_proxy and (not (openai.base_url and openai.base_url in no_proxy) or ('api.openai.com' in no_proxy)):
-        openai_client = openai.OpenAI(http_client=httpx.Client(proxy=https_proxy, verify=False), **openai_args)
+        base_url = config.get("api_base")
+    verify_ssl = config.get('verify_ssl')
+    if https_proxy and base_url not in no_proxy:
+        openai.http_client = httpx.Client(proxy=https_proxy, verify=verify_ssl)
     else:
-       openai_client = openai.OpenAI(**openai_args)
-    return openai_client
+        openai.http_client = httpx.Client(verify=verify_ssl)
+    return openai_args
 
 
 def chat_completions(config, params):
-    client_args = {'timeout':  params.get('timeout') if params.get('timeout') else 600}
-    openai_client = __init_openai(config, client_args)
+    __init_openai(config)
     model = params.get('model')
     if not model:
         model = 'gpt-3.5-turbo'
@@ -90,7 +92,7 @@ def chat_completions(config, params):
     max_tokens = params.get('max_tokens')
     messages = _build_messages(params)
     logger.debug("Messages: {}".format(messages))
-    openai_args={"model": model, "messages": messages}
+    openai_args = {"model": model, "messages": messages}
     other_fields = params.get('other_fields', {})
     if config.get("deployment_id"):
         openai_args.update({"deployment_id": config.get("deployment_id")})
@@ -102,13 +104,13 @@ def chat_completions(config, params):
         openai_args.update({"top_p": top_p})
     if other_fields:
         openai_args.update(other_fields)
-
-    return openai_client.chat.completions.create(**openai_args).model_dump()
+    openai_args['timeout'] = params.get('timeout') if params.get('timeout') else 600
+    return openai.chat.completions.create(**openai_args).model_dump()
 
 
 def list_models(config, params):
-    openai_client = __init_openai(config)
-    return openai_client.models.list().model_dump()
+    __init_openai(config)
+    return openai.models.list().model_dump()
 
 
 def get_usage(config, params):
@@ -142,7 +144,7 @@ def check(config):
         list_models(config, {})
         return True
     except Exception as err:
-        logger.error('{0}'.format(err))
+        logger.exception('{0}'.format(err))
         if hasattr(err, 'error'):
             raise ConnectorError(err.error.get("message"))
         raise ConnectorError('{0}'.format(err))
