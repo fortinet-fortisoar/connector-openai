@@ -2,4 +2,4 @@
 openai>=1.0.0
 jsonschema
 tiktoken
-httpx
+httpx>=0.26.0
