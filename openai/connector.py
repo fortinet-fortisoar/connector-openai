@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2023 Fortinet Inc
+Copyright (c) 2024 Fortinet Inc
 Copyright end
 """
 from connectors.core.connector import Connector
@@ -18,6 +18,7 @@ class Openai(Connector):
             params.update({'operation':operation})
             return supported_operations.get(operation)(config, params)
         except Exception as err:
+            logger.exception(err)
             raise ConnectorError("Message: {0}".format(err))
 
     def check_health(self, config=None, *args, **kwargs):
