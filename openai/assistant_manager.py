@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2024 Fortinet Inc
+Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 
@@ -33,12 +33,16 @@ class AssistantManager:
                                organization=self.config.get('organization'))
         event_handler = EventHandler(config=self.config, params=self.params,
                                      last_message_id=self.message_detail.get("id"))
-        with client.beta.threads.runs.create_and_stream(
+        response_format = self.params.get('response_format') or None
+        if response_format:
+            logger.info(f'Response format: {response_format}')
+        with client.beta.threads.runs.stream(
                 thread_id=self.params['thread_id'],
                 assistant_id=self.params['assistant_id'],
                 instructions=instructions,
                 event_handler=event_handler,
-                tool_choice=self.tool_choice
+                tool_choice=self.tool_choice,
+                response_format=response_format
         ) as stream:
             stream.until_done()
         return {"llm_response": event_handler.get_thread_messages(), "token_usage": event_handler.token_usage}

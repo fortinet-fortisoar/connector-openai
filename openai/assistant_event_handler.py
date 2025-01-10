@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2024 Fortinet Inc
+Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 from typing_extensions import override
@@ -174,10 +174,16 @@ class EventHandler(AssistantEventHandler):
         self.function_call_token_usage = dict(self.function_call_token_usage)
         token_usage = dict(token_usage)
 
-        for key in self.function_call_token_usage:
-            if key in token_usage:
-                token_usage[key] += self.function_call_token_usage[key]
+        self.merge_dicts(token_usage, self.function_call_token_usage)
+        return token_usage
 
-        # Convert back to list of lists
-        final_token_usage = [[key, value] for key, value in token_usage.items()]
-        return final_token_usage
+    def merge_dicts(self, dict1, dict2):
+        for key, value in dict2.items():
+            if isinstance(value, dict):
+                # Check if value is dict, and present in dict
+                if key not in dict1:
+                    # Create a new dict if not present
+                    dict1[key] = {}
+                self.merge_dicts(dict1[key], value)
+            elif isinstance(value, int):
+                dict1[key] = dict1.get(key, 0) + value
