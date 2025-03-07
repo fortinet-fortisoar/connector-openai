@@ -7,6 +7,7 @@ Copyright end
 
 from .assistant_event_handler import EventHandler
 from .operations import *
+from .constants import *
 
 logger = get_logger(LOGGER_NAME)
 
@@ -24,6 +25,15 @@ class AssistantManager:
     def get_llm_response(self):
         payload = {'thread_id': self.params['thread_id'], 'role': self.params['role'],
                    'content': self.params['content']}
+        if self.params.get('file_ids'):
+            attachments = []
+            attachment_tool = self.params.get('attachment_tool')
+            if ATTACHMENT_TOOLS.get(attachment_tool):
+                attachment_tool = ATTACHMENT_TOOLS.get(attachment_tool)
+            file_ids = self.params.get('file_ids').split(",")
+            for i in file_ids:
+                attachments.append({"file_id": i.strip(), "tools": [{"type": attachment_tool}]})
+            payload.update({'attachments': attachments})
         self.message_detail = create_thread_message(config=self.config, params=payload)
         assistant_response = self.run_assistant()
         return assistant_response

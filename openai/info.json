@@ -3042,6 +3042,18 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "assistant_id",
+          "title": "Assistant ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Assistant ID that should be used in this conversation..",
+          "description": "Specify the Assistant ID that should be used in this conversation.",
+          "isOnChange": false,
+          "onchange": {}
+        },
+        {
           "name": "thread_id",
           "title": "Thread ID",
           "type": "text",
@@ -3077,9 +3089,50 @@
           "description": "Specify the message or question to generate an LLM response.",
           "isOnChange": false,
           "onchange": {}
+        },
+        {
+          "title": "File Attachments",
+          "type": "checkbox",
+          "name": "file_attachments",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": false,
+          "description": "(Optional) Select this option to add attachments to the message.",
+          "tooltip": "Select this option to add attachments to the message.",
+          "onchange": {
+            "true": [
+              {
+                "title": "File IDs",
+                "type": "text",
+                "name": "file_ids",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "description": "Specify the comma separated File IDs to attach to the message.",
+                "tooltip": "Specify the comma separated File IDs to attach to the message."
+              },
+              {
+                "name": "attachment_tool",
+                "title": "Attachment Tool",
+                "type": "select",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "options": [
+                  "Code Interpreter",
+                  "File Search"
+                ],
+                "value": "File Search",
+                "tooltip": "Specify the attachment tool to add these files.",
+                "description": "Specify the attachment tool to add these files.",
+                "onchange": {}
+              }
+            ]
+          },
+          "output_schema": {}
         }
-      ],
-      "output_schema": {}
+      ]
     }
   ]
 }

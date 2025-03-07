@@ -40,3 +40,4 @@ FILE_PURPOSE_MAPPING = {
     "Batch Output": "batch_output",
     "Fine-tune Results": "fine-tune-results"
 }
+ATTACHMENT_TOOLS = {"Code Interpreter": "code_interpreter", "File Search": "file_search"}
