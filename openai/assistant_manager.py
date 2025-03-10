@@ -22,6 +22,16 @@ class AssistantManager:
         if 'tool_choice' in self.params:
             self.tool_choice = self.params['tool_choice']
 
+    def _prepare_attachments(self):
+        attachments = []
+        attachment_tool = ATTACHMENT_TOOLS.get(self.params.get('attachment_tool'), self.params.get('attachment_tool', "file_search"))
+
+        file_ids = self.params.get('file_ids').split(",")
+        for file_id in file_ids:
+            attachments.append({"file_id": file_id.strip(), "tools": [{"type": attachment_tool}]})
+
+        return attachments
+
     def get_llm_response(self):
         payload = {'thread_id': self.params['thread_id'], 'role': self.params['role'],
                    'content': self.params['content']}
