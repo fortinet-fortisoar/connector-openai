@@ -24,26 +24,18 @@ class AssistantManager:
 
     def _prepare_attachments(self):
         attachments = []
-        attachment_tool = ATTACHMENT_TOOLS.get(self.params.get('attachment_tool'), self.params.get('attachment_tool', "file_search"))
+        attachment_tool = ATTACHMENT_TOOLS.get(self.params.get('tool'), self.params.get('tools', "file_search"))
 
         file_ids = self.params.get('file_ids').split(",")
         for file_id in file_ids:
             attachments.append({"file_id": file_id.strip(), "tools": [{"type": attachment_tool}]})
-
         return attachments
 
     def get_llm_response(self):
         payload = {'thread_id': self.params['thread_id'], 'role': self.params['role'],
                    'content': self.params['content']}
         if self.params.get('file_ids'):
-            attachments = []
-            attachment_tool = self.params.get('attachment_tool')
-            if ATTACHMENT_TOOLS.get(attachment_tool):
-                attachment_tool = ATTACHMENT_TOOLS.get(attachment_tool)
-            file_ids = self.params.get('file_ids').split(",")
-            for i in file_ids:
-                attachments.append({"file_id": i.strip(), "tools": [{"type": attachment_tool}]})
-            payload.update({'attachments': attachments})
+            payload.update({'attachments': self._prepare_attachments()})
         self.message_detail = create_thread_message(config=self.config, params=payload)
         assistant_response = self.run_assistant()
         return assistant_response

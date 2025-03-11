@@ -3091,9 +3091,9 @@
           "onchange": {}
         },
         {
-          "title": "File Attachments",
+          "title": "Attachments",
           "type": "checkbox",
-          "name": "file_attachments",
+          "name": "attachments",
           "required": false,
           "visible": true,
           "editable": true,
@@ -3113,8 +3113,8 @@
                 "tooltip": "Specify the comma separated File IDs to attach to the message."
               },
               {
-                "name": "attachment_tool",
-                "title": "Attachment Tool",
+                "name": "tool",
+                "title": "Tool",
                 "type": "select",
                 "editable": true,
                 "visible": true,
