@@ -1,2 +1,2 @@
 #### Bug Fix
-Fixed issue with token consumption merging.
+Fixed an issue that caused playbook generation to fail.
