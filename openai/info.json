@@ -8,7 +8,7 @@
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.0.1/openai/1038/openai-v3-0-1",
   "category": "Miscellaneous",
   "configuration": {
     "fields": [
