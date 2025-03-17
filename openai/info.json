@@ -1,6 +1,6 @@
 {
   "name": "openai",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "label": "OpenAI",
   "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
   "publisher": "Fortinet",
@@ -8,7 +8,7 @@
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.0.1/openai/1038/openai-v3-0-1",
+  "help_online": "",
   "category": "Miscellaneous",
   "configuration": {
     "fields": [
@@ -3042,6 +3042,18 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "assistant_id",
+          "title": "Assistant ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Assistant ID that should be used in this conversation..",
+          "description": "Specify the Assistant ID that should be used in this conversation.",
+          "isOnChange": false,
+          "onchange": {}
+        },
+        {
           "name": "thread_id",
           "title": "Thread ID",
           "type": "text",
@@ -3077,9 +3089,50 @@
           "description": "Specify the message or question to generate an LLM response.",
           "isOnChange": false,
           "onchange": {}
+        },
+        {
+          "title": "Attachments",
+          "type": "checkbox",
+          "name": "attachments",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": false,
+          "description": "(Optional) Select this option to add attachments to the message.",
+          "tooltip": "Select this option to add attachments to the message.",
+          "onchange": {
+            "true": [
+              {
+                "title": "File IDs",
+                "type": "text",
+                "name": "file_ids",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "description": "Specify the comma separated File IDs to attach to the message.",
+                "tooltip": "Specify the comma separated File IDs to attach to the message."
+              },
+              {
+                "name": "tool",
+                "title": "Tool",
+                "type": "select",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "options": [
+                  "Code Interpreter",
+                  "File Search"
+                ],
+                "value": "File Search",
+                "tooltip": "Specify the attachment tool to add these files.",
+                "description": "Specify the attachment tool to add these files.",
+                "onchange": {}
+              }
+            ]
+          },
+          "output_schema": {}
         }
-      ],
-      "output_schema": {}
+      ]
     }
   ]
 }
