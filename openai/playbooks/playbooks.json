@@ -19,7 +19,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -35,16 +35,17 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "message": "",
                   "model": "gpt-3.5-turbo",
                   "temperature": "",
                   "top_p": "",
                   "max_tokens": "",
-                  "timeout": 600
+                  "timeout": 600,
+                  "other_fields": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "chat_completions",
                 "operationTitle": "Ask a Question"
@@ -94,7 +95,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -110,16 +111,17 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "messages": "[{\"role\": \"user\", \"content\": \"when was stuxnet first seen\"},{\"role\": \"assistant\", \"content\": \"Stuxnet was first identified by the infosec community in 2010, but development on it probably began in 20051. I hope this helps!\"},{\"role\": \"user\", \"content\": \"who discovered it\"}]",
                   "model": "gpt-3.5-turbo",
                   "temperature": "",
                   "top_p": "",
                   "max_tokens": "",
-                  "timeout": 600
+                  "timeout": 600,
+                  "other_fields": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "chat_conversation",
                 "operationTitle": "Converse With OpenAI"
@@ -169,7 +171,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -185,9 +187,9 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": [],
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "list_models",
                 "operationTitle": "List Available Models"
@@ -237,7 +239,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -253,11 +255,11 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "date": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_usage",
                 "operationTitle": "Get Tokens Usage"
@@ -307,7 +309,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -323,12 +325,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "input_text": "",
                   "model": "gpt-4"
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "count_tokens",
                 "operationTitle": "Get Token Count"
@@ -367,7 +369,7 @@
         {
           "@type": "Workflow",
           "uuid": "e309c82a-2f2c-4bdc-a751-be1758e797f0",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "0eeec409-50e7-4c8e-ae74-44f9e42cc1a4",
@@ -378,7 +380,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -394,14 +396,14 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "order": "Descending",
                   "after": "",
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "list_assistants",
                 "operationTitle": "List Assistants"
@@ -440,7 +442,7 @@
         {
           "@type": "Workflow",
           "uuid": "9cea3b33-4dec-4bff-8e8b-5f4e558c57db",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "d1f03a3f-d5fc-4669-9130-58ee18c95d29",
@@ -451,7 +453,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -467,11 +469,11 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "assistant_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_assistant",
                 "operationTitle": "Get Assistant Details"
@@ -510,7 +512,7 @@
         {
           "@type": "Workflow",
           "uuid": "c38872c2-61c7-439a-a4ad-df06400f9561",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "dbddee2d-5628-4c80-a3cd-c6747aa7ea01",
@@ -521,7 +523,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -537,7 +539,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "model": "",
                   "name": "",
@@ -572,7 +574,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_assistant",
                 "operationTitle": "Create Assistant"
@@ -611,7 +613,7 @@
         {
           "@type": "Workflow",
           "uuid": "357ea00d-e519-403d-a43f-5d83e87560bf",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "193b2073-e511-48f6-a0f0-4bcd063be8d8",
@@ -622,7 +624,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -638,10 +640,10 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
-                  "model": "",
                   "assistant_id": "",
+                  "model": "",
                   "name": "",
                   "description": "",
                   "instructions": "",
@@ -674,7 +676,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "update_assistant",
                 "operationTitle": "Update Assistant"
@@ -713,7 +715,7 @@
         {
           "@type": "Workflow",
           "uuid": "fc2cbb5f-f24d-4dde-9b9f-46637fba809e",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "518b331b-b8b9-411f-96cd-0ecee1a51060",
@@ -724,7 +726,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -740,11 +742,11 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "assistant_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "delete_assistant",
                 "operationTitle": "Delete Assistant"
@@ -814,7 +816,7 @@
                 "params": {
                   "thread_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_thread",
                 "operationTitle": "Get Thread Details"
@@ -853,7 +855,7 @@
         {
           "@type": "Workflow",
           "uuid": "add2f153-00ee-43ff-b6d0-eed9cb4fa3f9",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "816e6caa-fd7c-4fda-ac3f-98a7181e0601",
@@ -864,7 +866,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -880,11 +882,11 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "delete_thread",
                 "operationTitle": "Delete Thread"
@@ -923,7 +925,7 @@
         {
           "@type": "Workflow",
           "uuid": "62618d35-1550-4daa-b22b-f7db7e82f4ff",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "2f572367-b226-4b27-b045-460e1f0d7e31",
@@ -934,7 +936,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -950,7 +952,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "messages": [
                     {
@@ -980,7 +982,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_thread",
                 "operationTitle": "Create Thread"
@@ -1019,7 +1021,7 @@
         {
           "@type": "Workflow",
           "uuid": "923a7539-96a3-4349-8dd1-1b9980c0f55a",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "0dac8e91-4f7b-485d-ac33-421fa78eb26f",
@@ -1030,7 +1032,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1046,7 +1048,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "tool_resources": {
@@ -1068,7 +1070,7 @@
                     "user": "abc123"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "update_thread",
                 "operationTitle": "Update Thread"
@@ -1107,7 +1109,7 @@
         {
           "@type": "Workflow",
           "uuid": "61e1f43b-4fc6-4a10-9875-a1cd66c8dec9",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "2d693224-6134-4aff-bf74-eae726f83bf5",
@@ -1118,7 +1120,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1134,7 +1136,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "role": "",
@@ -1162,7 +1164,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_thread_message",
                 "operationTitle": "Create Thread Message"
@@ -1201,7 +1203,7 @@
         {
           "@type": "Workflow",
           "uuid": "43765920-7211-4fad-a1e8-4a37bd4027c2",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "28dc513e-bb55-4e5e-a538-ec5199280e43",
@@ -1212,7 +1214,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1228,7 +1230,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "message_id": "",
@@ -1237,7 +1239,7 @@
                     "user": "abc123"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "update_thread_message",
                 "operationTitle": "Update Thread Message"
@@ -1276,7 +1278,7 @@
         {
           "@type": "Workflow",
           "uuid": "cb48984d-a760-47d2-a9ed-44b55f2334d5",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "3e2cb57b-d755-48a0-b380-8b17154d3927",
@@ -1287,7 +1289,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1303,7 +1305,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "run_id": "",
@@ -1312,7 +1314,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "list_thread_messages",
                 "operationTitle": "List Thread Messages"
@@ -1351,7 +1353,7 @@
         {
           "@type": "Workflow",
           "uuid": "431aa96e-e83b-47aa-8013-181d3456752a",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "024c2693-54ae-4e5e-aa01-168c291a3344",
@@ -1362,7 +1364,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1378,12 +1380,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "message_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_thread_message",
                 "operationTitle": "Get Thread Message Details"
@@ -1422,7 +1424,7 @@
         {
           "@type": "Workflow",
           "uuid": "3e3d55b8-2ac3-42e4-b881-d14b513b93b2",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "9d1ac833-dc30-4b4f-9ec5-1cfe9647c0d6",
@@ -1433,7 +1435,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1449,12 +1451,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "message_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "delete_thread_message",
                 "operationTitle": "Delete Thread Message"
@@ -1493,7 +1495,7 @@
         {
           "@type": "Workflow",
           "uuid": "f426015d-ed70-4d8f-9234-66b1b833a70d",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "1268972b-72b1-44ef-ae4a-4a2445f84e52",
@@ -1504,7 +1506,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1520,7 +1522,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "order": "Descending",
@@ -1528,7 +1530,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "list_runs",
                 "operationTitle": "List Runs"
@@ -1567,7 +1569,7 @@
         {
           "@type": "Workflow",
           "uuid": "0d491aaf-24f2-4667-969e-eb9005227fad",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "feb4c159-7cc8-4528-aad4-f002cf1a7fc4",
@@ -1578,7 +1580,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1594,12 +1596,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "run_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_run",
                 "operationTitle": "Get Run Details"
@@ -1638,7 +1640,7 @@
         {
           "@type": "Workflow",
           "uuid": "e7964f19-5a04-4bc5-97a0-7cdfccec08e0",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "f60081b3-39cb-44c0-be69-2c83a92f7883",
@@ -1649,7 +1651,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1665,7 +1667,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "assistant_id": "",
@@ -1695,7 +1697,7 @@
                   "max_prompt_tokens": "",
                   "other_fields": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_run",
                 "operationTitle": "Create Run"
@@ -1734,7 +1736,7 @@
         {
           "@type": "Workflow",
           "uuid": "504a565a-8ee8-4540-8dad-207ff5e67100",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "b7659d65-2303-4363-b055-cde51d912b55",
@@ -1745,7 +1747,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1761,7 +1763,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "assistant_id": "",
                   "thread": {
@@ -1805,7 +1807,7 @@
                   "max_prompt_tokens": "",
                   "other_fields": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_thread_and_run",
                 "operationTitle": "Create Thread and Run"
@@ -1844,7 +1846,7 @@
         {
           "@type": "Workflow",
           "uuid": "dbeb22a6-75e6-4118-8ad0-407a657bd91c",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "17e5194b-4cbb-432a-973b-9339a4d4d56a",
@@ -1855,7 +1857,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1871,7 +1873,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "run_id": "",
@@ -1879,7 +1881,7 @@
                     "user_id": "user_abc123"
                   }
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "update_run",
                 "operationTitle": "Update Run"
@@ -1918,7 +1920,7 @@
         {
           "@type": "Workflow",
           "uuid": "f89bc5a9-9ea6-41df-bf84-f333acfc5366",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "9e0a4529-a1c3-4e01-86ce-bfc4ab10d45c",
@@ -1929,7 +1931,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -1945,12 +1947,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "run_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "cancel_run",
                 "operationTitle": "Cancel Run"
@@ -1989,7 +1991,7 @@
         {
           "@type": "Workflow",
           "uuid": "861ddf2c-7567-4763-a365-6de3a3f863b2",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "cfc2a905-42a3-4c4f-bc84-c962ecc823cf",
@@ -2000,7 +2002,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2016,7 +2018,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "run_id": "",
@@ -2027,7 +2029,7 @@
                     }
                   ]
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "submit_tool_outputs_to_run",
                 "operationTitle": "Submit Tool Outputs To Run"
@@ -2066,7 +2068,7 @@
         {
           "@type": "Workflow",
           "uuid": "f380ef06-82ef-439f-a93f-d8cfb2c53630",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "0c1a6357-a420-477e-a04b-6b891d055c08",
@@ -2077,7 +2079,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2093,7 +2095,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "thread_id": "",
                   "run_id": "",
@@ -2102,7 +2104,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "list_run_steps",
                 "operationTitle": "List Run Steps"
@@ -2174,7 +2176,7 @@
                   "run_id": "",
                   "step_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_run_step",
                 "operationTitle": "Get Run Step Details"
@@ -2213,7 +2215,7 @@
         {
           "@type": "Workflow",
           "uuid": "088623bb-1a85-4d3f-851f-604c23e8a376",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "45ee16ab-627d-4b88-8611-cb094843b858",
@@ -2224,7 +2226,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2240,17 +2242,17 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
-                  "file_ids": "",
                   "name": "",
+                  "file_ids": "",
                   "expires_after": {
                     "anchor": "last_active_at",
                     "days": "1"
                   },
                   "metadata": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_vector_store",
                 "operationTitle": "Create Vector Store"
@@ -2320,7 +2322,7 @@
                 "params": {
                   "vector_store_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_vector_store",
                 "operationTitle": "Get Vector Store Details"
@@ -2359,7 +2361,7 @@
         {
           "@type": "Workflow",
           "uuid": "8c90b404-faa2-4487-a2d1-e13d02b107d9",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "f27dc1b8-02f8-4f15-9e52-f822d4b13d25",
@@ -2370,7 +2372,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2386,12 +2388,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "vector_store_id": "",
                   "file_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_vector_store_file",
                 "operationTitle": "Create Vector Store File"
@@ -2430,7 +2432,7 @@
         {
           "@type": "Workflow",
           "uuid": "e45956de-233b-4a09-9cd9-a4e02a5c2c46",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "5595b483-4c0e-48eb-97a6-05d09be1fbd7",
@@ -2441,7 +2443,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2457,12 +2459,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "vector_store_id": "",
                   "file_ids": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_vector_store_file_batch",
                 "operationTitle": "Create Vector Store File Batch"
@@ -2501,7 +2503,7 @@
         {
           "@type": "Workflow",
           "uuid": "83fd1f30-52f2-438b-bc82-91aad4958df6",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "f3b5b7a5-2e72-4a74-b135-647b6d591d2e",
@@ -2512,7 +2514,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2528,12 +2530,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "vector_store_id": "",
                   "batch_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_vector_store_file_batch",
                 "operationTitle": "Get Vector Store File Batch"
@@ -2572,7 +2574,7 @@
         {
           "@type": "Workflow",
           "uuid": "86283971-fd6c-4708-a5cd-ec8bcedeacc2",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "f32c7107-218c-4967-bef9-f9462ccd7644",
@@ -2583,7 +2585,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2599,12 +2601,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "vector_store_id": "",
                   "batch_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "cancel_vector_store_file_batch",
                 "operationTitle": "Cancel Vector Store File Batch"
@@ -2643,7 +2645,7 @@
         {
           "@type": "Workflow",
           "uuid": "441b99eb-2678-47fa-b195-298b8b90cd65",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "5693cc26-f56c-435f-8a11-9e7d570b1ca2",
@@ -2654,7 +2656,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2670,15 +2672,16 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "model": "",
                   "input": "",
                   "voice": "",
-                  "speed": 1.0,
-                  "response_format": "mp3"
+                  "file_path": "",
+                  "response_format": "mp3",
+                  "speed": 1.0
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_speech",
                 "operationTitle": "Create Speech"
@@ -2717,7 +2720,7 @@
         {
           "@type": "Workflow",
           "uuid": "51bf7f32-da94-441d-97b5-4051caad9019",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "c3300a61-e920-491e-9ca9-9309241f7937",
@@ -2728,7 +2731,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2744,7 +2747,7 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "model": "whisper-1",
                   "file": "",
@@ -2753,7 +2756,7 @@
                   "temperature": "",
                   "timestamp_granularities": "segment"
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_transcription",
                 "operationTitle": "Create Transcription"
@@ -2792,7 +2795,7 @@
         {
           "@type": "Workflow",
           "uuid": "215404b4-cb9f-4641-93a5-45e4c037cab3",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "7e7619d4-5a96-4270-8971-b79167749bac",
@@ -2803,7 +2806,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -2819,13 +2822,14 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "model": "whisper-1",
                   "file": "",
+                  "prompt": "",
                   "temperature": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "create_translation",
                 "operationTitle": "Create Translation"
@@ -2895,7 +2899,7 @@
                 "params": {
                   "file_id": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "get_file",
                 "operationTitle": "Get File Details"
@@ -2936,7 +2940,7 @@
           "triggerLimit": null,
           "name": "List Files",
           "aliasName": null,
-          "tag": null,
+          "tag": "#OpenAI",
           "description": "Retrieves a list of files that belong to the user's organization based on the purpose specified.",
           "isActive": false,
           "debug": false,
@@ -2955,9 +2959,11 @@
               "description": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "6062d104-aecf-43ed-bddb-a437cb75b33f",
-                "params": [],
-                "version": "3.0.0",
+                "config": "",
+                "params": {
+                  "purpose": ""
+                },
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "list_files",
                 "operationTitle": "List Files",
@@ -2965,8 +2971,8 @@
                 "step_variables": []
               },
               "status": null,
-              "top": "165",
-              "left": "125",
+              "top": "120",
+              "left": "188",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
               "uuid": "5f9ac6e0-194f-4973-afde-8dabe419e52a"
@@ -2986,8 +2992,8 @@
                 "triggerOnReplicate": false
               },
               "status": null,
-              "top": "30",
-              "left": "125",
+              "top": "20",
+              "left": "20",
               "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
               "group": null,
               "uuid": "204f2ed9-a50e-4ef0-884a-3c0dff6b4bfd"
@@ -2996,7 +3002,7 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> List Files",
+              "name": "Start-> List Files",
               "targetStep": "/api/3/workflow_steps/5f9ac6e0-194f-4973-afde-8dabe419e52a",
               "sourceStep": "/api/3/workflow_steps/204f2ed9-a50e-4ef0-884a-3c0dff6b4bfd",
               "label": null,
@@ -3025,7 +3031,7 @@
         {
           "@type": "Workflow",
           "uuid": "4ac9ae86-512d-4144-b87c-246dc30279b0",
-          "collection": "/api/3/workflow_collections/823f4dbb-59d8-4c7a-bd30-3e72d2950706",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
           "steps": [
             {
               "uuid": "39375e78-f42a-491f-9176-ca1c76dadb45",
@@ -3036,7 +3042,7 @@
               "arguments": {
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records[0]}}"
+                    "params": []
                   }
                 }
               },
@@ -3052,12 +3058,12 @@
               "status": null,
               "arguments": {
                 "name": "OpenAI",
-                "config": "''",
+                "config": "",
                 "params": {
                   "file": "",
                   "purpose": ""
                 },
-                "version": "3.0.0",
+                "version": "3.1.0",
                 "connector": "openai",
                 "operation": "upload_file",
                 "operationTitle": "Upload File"
@@ -3092,13 +3098,365 @@
               "targetStep": "/api/3/workflow_steps/66f523ad-2179-4197-b2bf-cf2dedd25f0a"
             }
           ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c3a3c947-43e0-4d5c-b76b-cfb23f793c2b",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
+          "steps": [
+            {
+              "uuid": "016eaaa4-1b4d-4e82-95a3-373f335dced8",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "bf2e86f2-ebfb-4b69-a89c-e783be3b29b3",
+              "@type": "WorkflowStep",
+              "name": "Get Thread Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "",
+                "params": {
+                  "thread_id": ""
+                },
+                "version": "3.1.0",
+                "connector": "openai",
+                "operation": "get_thread",
+                "operationTitle": "Get Thread Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a thread's details based on the thread ID that you have specified.",
+          "name": "Get Thread Details",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/016eaaa4-1b4d-4e82-95a3-373f335dced8",
+          "routes": [
+            {
+              "uuid": "5c8cec85-c4a1-4206-a2cd-39725bea2b36",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Thread Details",
+              "sourceStep": "/api/3/workflow_steps/016eaaa4-1b4d-4e82-95a3-373f335dced8",
+              "targetStep": "/api/3/workflow_steps/bf2e86f2-ebfb-4b69-a89c-e783be3b29b3"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "12dd8325-e711-4d20-bbd5-ef01ee93c0df",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
+          "steps": [
+            {
+              "uuid": "f5f01214-264e-48dd-bc2b-24db72affd1d",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "f6ca7132-8f77-4779-8ff1-bb46bed9c9e5",
+              "@type": "WorkflowStep",
+              "name": "Get Run Step Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "",
+                "params": {
+                  "thread_id": "",
+                  "run_id": "",
+                  "step_id": ""
+                },
+                "version": "3.1.0",
+                "connector": "openai",
+                "operation": "get_run_step",
+                "operationTitle": "Get Run Step Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a step of a run based on the thread ID, run ID, and other input parameters that you have specified.",
+          "name": "Get Run Step Details",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f5f01214-264e-48dd-bc2b-24db72affd1d",
+          "routes": [
+            {
+              "uuid": "81cc11b2-bdea-4a0b-ada0-fe31c73216f6",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Run Step Details",
+              "sourceStep": "/api/3/workflow_steps/f5f01214-264e-48dd-bc2b-24db72affd1d",
+              "targetStep": "/api/3/workflow_steps/f6ca7132-8f77-4779-8ff1-bb46bed9c9e5"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "0c33c173-fefd-4c3d-b63a-4a03ee068c87",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
+          "steps": [
+            {
+              "uuid": "2af73408-4c45-480b-ae04-10999a55b8e8",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "45f9aee7-4543-4e4e-b711-251a527afd2b",
+              "@type": "WorkflowStep",
+              "name": "Get Vector Store Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "",
+                "params": {
+                  "vector_store_id": ""
+                },
+                "version": "3.1.0",
+                "connector": "openai",
+                "operation": "get_vector_store",
+                "operationTitle": "Get Vector Store Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a vector store details based on the vector store ID that you have specified.",
+          "name": "Get Vector Store Details",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/2af73408-4c45-480b-ae04-10999a55b8e8",
+          "routes": [
+            {
+              "uuid": "421caf75-f45c-4bbc-86cd-162cf85cb326",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Vector Store Details",
+              "sourceStep": "/api/3/workflow_steps/2af73408-4c45-480b-ae04-10999a55b8e8",
+              "targetStep": "/api/3/workflow_steps/45f9aee7-4543-4e4e-b711-251a527afd2b"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "973e8f43-f12d-4c22-bdcd-b6c845ad88a1",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
+          "steps": [
+            {
+              "uuid": "cb56713f-722c-4216-9d2b-b1feed2d31d7",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "9dfccf82-71a6-4fe5-a733-22559fa70d8f",
+              "@type": "WorkflowStep",
+              "name": "Get File Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "",
+                "params": {
+                  "file_id": ""
+                },
+                "version": "3.1.0",
+                "connector": "openai",
+                "operation": "get_file",
+                "operationTitle": "Get File Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves information about a specific file based on the file ID specified.",
+          "name": "Get File Details",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/cb56713f-722c-4216-9d2b-b1feed2d31d7",
+          "routes": [
+            {
+              "uuid": "38d04f99-e8ca-46cf-975e-75bbff8f7490",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get File Details",
+              "sourceStep": "/api/3/workflow_steps/cb56713f-722c-4216-9d2b-b1feed2d31d7",
+              "targetStep": "/api/3/workflow_steps/9dfccf82-71a6-4fe5-a733-22559fa70d8f"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d4cb30db-a315-44ec-af65-77fa73edeb3d",
+          "collection": "/api/3/workflow_collections/033c380b-3d36-4289-b05c-a4e27a9ba0e8",
+          "steps": [
+            {
+              "uuid": "9cf53581-0e3c-4bba-9ccd-a43034260538",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "30cd4527-99c9-4e07-bd20-e68c74c6d115",
+              "@type": "WorkflowStep",
+              "name": "Delete File",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "OpenAI",
+                "config": "",
+                "params": {
+                  "file_id": ""
+                },
+                "version": "3.1.0",
+                "connector": "openai",
+                "operation": "delete_file",
+                "operationTitle": "Delete File"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Delete file based on the file ID specified.",
+          "name": "Delete File",
+          "tag": "#OpenAI",
+          "recordTags": [
+            "OpenAI",
+            "openai"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/9cf53581-0e3c-4bba-9ccd-a43034260538",
+          "routes": [
+            {
+              "uuid": "dd5f6644-a56e-4701-9d91-3bd01d7554a2",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Delete File",
+              "sourceStep": "/api/3/workflow_steps/9cf53581-0e3c-4bba-9ccd-a43034260538",
+              "targetStep": "/api/3/workflow_steps/30cd4527-99c9-4e07-bd20-e68c74c6d115"
+            }
+          ]
         }
       ],
-      "name": "Sample - OpenAI - 3.0.0",
+      "name": "Sample - OpenAI - 3.1.0",
       "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
       "visible": true,
       "recordTags": [
-        "OpenAI",
+        "Openai",
         "openai"
       ]
     }
