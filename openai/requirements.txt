@@ -1,5 +1,5 @@
 # Add Python Dependencies
-openai>=1.21.0
+openai>=1.58.1
 jsonschema
 tiktoken
 httpx>=0.26.0
