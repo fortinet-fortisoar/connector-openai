@@ -557,6 +557,14 @@ def get_file(config, params):
     return client.files.retrieve(**payload).model_dump()
 
 
+def delete_file(config, params):
+    __init_openai(config)
+    payload = build_payload(params)
+    payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
+    client = openai.OpenAI(api_key=openai.api_key, organization=openai.organization, project=openai.project, http_client=openai.http_client)
+    return client.files.delete(**payload).model_dump()
+
+
 def list_files(config, params):
     __init_openai(config)
     params['purpose'] = FILE_PURPOSE_MAPPING.get(params.get('purpose'))
