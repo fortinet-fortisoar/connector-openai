@@ -4,10 +4,6 @@ MIT License
 Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
-import json
-
-import requests
-from integrations.crudhub import make_request
 from connectors.core.connector import get_logger
 from .constants import LOGGER_NAME
 
@@ -28,10 +24,6 @@ def execute_connector_action(config_id, connector_name, operation, payload, vers
         if response.get('status') == "Success":
             return response
         message = f'Error occurred in executing connector action: {response.get("message")}'
-        logger.error(message)
-        raise Exception(message)
-    except Connector.DoesNotExist:
-        message = f'Connector {connector_name} not found.'
         logger.error(message)
         raise Exception(message)
     except Exception as error:
