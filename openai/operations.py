@@ -557,12 +557,16 @@ def get_file(config, params):
     return client.files.retrieve(**payload).model_dump()
 
 
-def delete_file(config, params):
+def delete_files(config, params):
     __init_openai(config)
-    payload = build_payload(params)
-    payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
+    file_ids = params.get("file_ids").split(",")
+    timeout = params.get('timeout') if params.get('timeout') else 600
     client = openai.OpenAI(api_key=openai.api_key, organization=openai.organization, project=openai.project, http_client=openai.http_client)
-    return client.files.delete(**payload).model_dump()
+    deleted_files = []
+    for file_id in file_ids:
+        response = client.files.delete(file_id=file_id, timeout=timeout).model_dump()
+        deleted_files.append(response)
+    return deleted_files
 
 
 def list_files(config, params):

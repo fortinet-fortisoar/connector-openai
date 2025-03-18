@@ -3032,7 +3032,7 @@
       }
     },
     {
-      "operation": "delete_file",
+      "operation": "delete_files",
       "title": "Delete File",
       "description": "Delete file based on the file ID specified.",
       "category": "miscellaneous",
@@ -3040,14 +3040,14 @@
       "enabled": true,
       "parameters": [
         {
-          "title": "File ID",
+          "title": "File IDs",
           "type": "text",
-          "name": "file_id",
+          "name": "file_ids",
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "Specify the ID of the file that should be deleted.",
-          "tooltip": "Specify the ID of the file that should be deleted."
+          "description": "Specify the comma separated File IDs that should be deleted.",
+          "tooltip": "Specify the comma separated File IDs that should be deleted."
         }
       ],
       "output_schema": {
