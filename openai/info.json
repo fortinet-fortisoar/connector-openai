@@ -3050,11 +3050,13 @@
           "tooltip": "Specify the comma separated File IDs that should be deleted."
         }
       ],
-      "output_schema": {
-        "id": "",
-        "object": "",
-        "deleted": ""
-      }
+      "output_schema": [
+        {
+          "id": "",
+          "object": "",
+          "deleted": ""
+        }
+      ]
     },
     {
       "operation": "get_llm_response",
