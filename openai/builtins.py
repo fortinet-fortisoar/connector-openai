@@ -58,5 +58,6 @@ supported_operations = {
     'get_file': get_file,
     'list_files': list_files,
     'upload_file': upload_file,
+    'delete_files': delete_files,
     'get_llm_response': get_llm_response
     }

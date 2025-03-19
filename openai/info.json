@@ -3032,6 +3032,33 @@
       }
     },
     {
+      "operation": "delete_files",
+      "title": "Delete File",
+      "description": "Delete file based on the file ID specified.",
+      "category": "miscellaneous",
+      "annotation": "delete_file",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "File IDs",
+          "type": "text",
+          "name": "file_ids",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the comma separated File IDs that should be deleted.",
+          "tooltip": "Specify the comma separated File IDs that should be deleted."
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "",
+          "object": "",
+          "deleted": ""
+        }
+      ]
+    },
+    {
       "operation": "get_llm_response",
       "title": "Get LLM Response",
       "annotation": "get_llm_response",
