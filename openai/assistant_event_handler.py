@@ -12,6 +12,7 @@ from openai.types.beta.threads.runs import ToolCall, RunStep
 from openai.types.beta import AssistantStreamEvent
 from .operations import _init_openai, cancel_run, create_thread_message, get_run, list_thread_messages
 from .utils import execute_connector_action
+from connectors.core.connector import get_logger
 
 logger = get_logger(LOGGER_NAME)
 

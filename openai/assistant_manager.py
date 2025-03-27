@@ -8,6 +8,7 @@ Copyright end
 from .assistant_event_handler import EventHandler
 from .operations import _init_openai, create_thread_message
 from .constants import *
+from connectors.core.connector import get_logger
 
 logger = get_logger(LOGGER_NAME)
 
