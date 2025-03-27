@@ -59,7 +59,7 @@ def _build_messages(params):
     return messages
 
 
-def init_openai(config):
+def _init_openai(config):
     # Check for Proxy
     https_proxy = os.environ.get('HTTPS_PROXY')
     no_proxy = os.environ.get('NO_PROXY', 'localhost')
@@ -95,7 +95,7 @@ def init_openai(config):
 
 
 def chat_completions(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     model = params.get('model')
     if not model:
         model = 'gpt-3.5-turbo'
@@ -121,7 +121,7 @@ def chat_completions(config, params):
 
 
 def list_models(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     return client.models.list().model_dump()
 
 
@@ -223,14 +223,14 @@ def build_payload(params: dict):
 
 
 def create_assistant(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.assistants.create(**payload).model_dump()
 
 
 def list_assistants(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['order'] = SORT_ORDER_MAPPING.get(params.get('order'))
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
@@ -242,50 +242,50 @@ def list_assistants(config, params):
 
 
 def get_assistant(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     return client.beta.assistants.retrieve(assistant_id=params.get('assistant_id'), timeout=600).model_dump()
 
 
 def delete_assistant(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     return client.beta.assistants.delete(assistant_id=params.get('assistant_id'), timeout=600).model_dump()
 
 
 def update_assistant(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.assistants.update(**payload).model_dump()
 
 
 def get_thread(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.retrieve(**params).model_dump()
 
 
 def delete_thread(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.delete(**params).model_dump()
 
 
 def create_thread(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.create(**payload).model_dump()
 
 
 def update_thread(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.update(**payload).model_dump()
 
 
 def create_thread_message(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['role'] = params.get('role', '').lower()
     contents = params.get('content')
     if isinstance(contents, list):
@@ -301,7 +301,7 @@ def create_thread_message(config, params):
 
 
 def list_thread_messages(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['order'] = SORT_ORDER_MAPPING.get(params.get('order'))
     limit = params.get('limit')
     # Maximum limit supported by API is 100
@@ -313,28 +313,28 @@ def list_thread_messages(config, params):
 
 
 def delete_thread_message(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.messages.delete(**payload).model_dump()
 
 
 def get_thread_message(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.messages.retrieve(**payload).model_dump()
 
 
 def update_thread_message(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.messages.update(**payload).model_dump()
 
 
 def list_runs(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['order'] = SORT_ORDER_MAPPING.get(params.get('order'))
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
@@ -346,14 +346,14 @@ def list_runs(config, params):
 
 
 def get_run(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.runs.retrieve(**payload).model_dump()
 
 
 def create_run(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     other_fields = params.pop('other_fields', {})
     if other_fields:
@@ -363,21 +363,21 @@ def create_run(config, params):
 
 
 def update_run(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.runs.update(**payload).model_dump()
 
 
 def cancel_run(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.runs.cancel(**payload).model_dump()
 
 
 def create_thread_and_run(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     other_fields = params.pop('other_fields', {})
     if other_fields:
@@ -387,14 +387,14 @@ def create_thread_and_run(config, params):
 
 
 def submit_tool_outputs_to_run(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.runs.submit_tool_outputs(**payload).model_dump()
 
 
 def list_run_steps(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['order'] = SORT_ORDER_MAPPING.get(params.get('order'))
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
@@ -406,14 +406,14 @@ def list_run_steps(config, params):
 
 
 def get_run_step(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.threads.runs.steps.retrieve(**payload).model_dump()
 
 
 def create_vector_store(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     handle_comma_separated_input(params, ['file_ids'])
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
@@ -421,21 +421,21 @@ def create_vector_store(config, params):
 
 
 def get_vector_store(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.vector_stores.retrieve(**payload).model_dump()
 
 
 def create_vector_store_file(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.vector_stores.files.create(**payload).model_dump()
 
 
 def create_vector_store_file_batch(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     file_ids = params.get('file_ids')
     if isinstance(file_ids, (tuple, list)):
         params['file_ids'] = list(file_ids)
@@ -447,21 +447,21 @@ def create_vector_store_file_batch(config, params):
 
 
 def get_vector_store_file_batch(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.vector_stores.file_batches.retrieve(**payload).model_dump()
 
 
 def cancel_vector_store_file_batch(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.beta.vector_stores.file_batches.cancel(**payload).model_dump()
 
 
 def create_speech(config, params, *args, **kwargs):
-    client = init_openai(config)
+    client = _init_openai(config)
     env = kwargs.get('env', {})
     file_path = params.pop('file_path')
     _list = file_path.split('.')
@@ -503,7 +503,7 @@ def get_file_input(file_payload, env={}):
 
 
 def create_transcription(config, params, *args, **kwargs):
-    client = init_openai(config)
+    client = _init_openai(config)
     env = kwargs.get('env', {})
     params['voice'] = params.get('voice', '').lower()
     timestamp_granularities = [granularity.lower() for granularity in params.get('timestamp_granularities')]
@@ -517,7 +517,7 @@ def create_transcription(config, params, *args, **kwargs):
 
 
 def create_translation(config, params, *args, **kwargs):
-    client = init_openai(config)
+    client = _init_openai(config)
     env = kwargs.get('env', {})
     payload = build_payload(params)
     payload['file'] = get_file_input(params.get('file'), env)
@@ -526,14 +526,14 @@ def create_translation(config, params, *args, **kwargs):
 
 
 def get_file(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
     return client.files.retrieve(**payload).model_dump()
 
 
 def delete_files(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     file_ids = params.get("file_ids").split(",")
     timeout = params.get('timeout') if params.get('timeout') else 600
     deleted_files = []
@@ -544,7 +544,7 @@ def delete_files(config, params):
 
 
 def list_files(config, params):
-    client = init_openai(config)
+    client = _init_openai(config)
     params['purpose'] = FILE_PURPOSE_MAPPING.get(params.get('purpose'))
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
@@ -552,7 +552,7 @@ def list_files(config, params):
 
 
 def upload_file(config, params, *args, **kwargs):
-    client = init_openai(config)
+    client = _init_openai(config)
     env = kwargs.get('env', {})
     params['purpose'] = FILE_PURPOSE_MAPPING.get(params.get('purpose'), params.get('purpose'))
     payload = build_payload(params)
