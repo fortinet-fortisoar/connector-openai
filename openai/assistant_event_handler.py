@@ -13,6 +13,7 @@ from openai.types.beta import AssistantStreamEvent
 from .operations import _init_openai, cancel_run, create_thread_message, get_run, list_thread_messages
 from .utils import execute_connector_action
 from connectors.core.connector import get_logger
+from .constants import LOGGER_NAME
 
 logger = get_logger(LOGGER_NAME)
 
