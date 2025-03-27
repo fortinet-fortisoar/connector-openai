@@ -41,8 +41,7 @@ class AssistantManager:
         return assistant_response
 
     def run_assistant(self, instructions=""):
-        client = openai.OpenAI(api_key=self.config['apiKey'], project=self.config.get('project'),
-                               organization=self.config.get('organization'))
+        client = init_openai(self.config)
         event_handler = EventHandler(config=self.config, params=self.params,
                                      last_message_id=self.message_detail.get("id"))
         response_format = self.params.get('response_format') or None

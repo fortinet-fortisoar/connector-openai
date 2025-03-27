@@ -65,8 +65,7 @@ class EventHandler(AssistantEventHandler):
                                           'content': self.function_calling_output})
 
     def submit_tool_outputs(self):
-        client = openai.OpenAI(api_key=self.config['apiKey'], project=self.config.get('project'),
-                               organization=self.config.get('organization'))
+        client = init_openai(self.config)
         run_object = get_run(config=self.config, params={'run_id': self.run_id, 'thread_id': self.params['thread_id']})
         if run_object['status'] != 'cancelled':
             with client.beta.threads.runs.submit_tool_outputs_stream(
