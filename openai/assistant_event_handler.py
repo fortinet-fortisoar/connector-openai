@@ -10,8 +10,10 @@ from openai.types.beta.threads.runs import RunStepDelta
 from openai.types.beta.threads import Message, MessageDelta
 from openai.types.beta.threads.runs import ToolCall, RunStep
 from openai.types.beta import AssistantStreamEvent
-from .operations import *
+from .operations import _init_openai, cancel_run, create_thread_message, get_run, list_thread_messages
 from .utils import execute_connector_action
+from connectors.core.connector import get_logger
+from .constants import LOGGER_NAME
 
 logger = get_logger(LOGGER_NAME)
 
@@ -65,8 +67,7 @@ class EventHandler(AssistantEventHandler):
                                           'content': self.function_calling_output})
 
     def submit_tool_outputs(self):
-        client = openai.OpenAI(api_key=self.config['apiKey'], project=self.config.get('project'),
-                               organization=self.config.get('organization'))
+        client = _init_openai(self.config)
         run_object = get_run(config=self.config, params={'run_id': self.run_id, 'thread_id': self.params['thread_id']})
         if run_object['status'] != 'cancelled':
             with client.beta.threads.runs.submit_tool_outputs_stream(
