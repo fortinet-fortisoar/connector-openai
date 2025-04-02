@@ -13,7 +13,7 @@ from openai.types.beta import AssistantStreamEvent
 from .operations import _init_openai, cancel_run, create_thread_message, get_run, list_thread_messages
 from .utils import execute_connector_action
 from connectors.core.connector import get_logger
-from .constants import LOGGER_NAME
+from .constants import LOGGER_NAME, RUN_STATUS_ERROR_MESSAGES, RUN_FINAL_STATUS
 
 logger = get_logger(LOGGER_NAME)
 
@@ -22,7 +22,7 @@ class EventHandler(AssistantEventHandler):
     def __init__(self, config, params, last_message_id):
         super().__init__()
         self.run_id = None
-        self.thread_messages = []
+        self.response = {'status': 1, 'messages': []}
         self.config = config
         self.params = params
         self.tool_outputs = []
@@ -124,17 +124,33 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_end(self):
+        if self.response['status'] == 0:
+            return
+
         run_payload = {'run_id': self.run_id, 'thread_id': self.params['thread_id']}
-        run_object = get_run(config=self.config, params=run_payload)
 
-        # wait for the run to get completed or canceled to load the messages
-        while run_object['status'] not in ['completed', 'cancelled']:
+        while True:
             run_object = get_run(config=self.config, params=run_payload)
-            # logger.info(f'Run Status: {run_object.status}')
+            status = run_object['status']
+            logger.info(f'Run Status: {status}')
+            if status in RUN_FINAL_STATUS:
+                break
 
-        self.thread_messages = list_thread_messages(config=self.config,
-                                                    params={'thread_id': self.params['thread_id'],
-                                                            'before': self.last_message_id})
+        # Get the error message as per status
+        error_message = self._get_error_message(status, run_object)
+        if error_message:
+            detailed_error_message = (
+                f"{error_message} \nThread Id: {run_object.get('thread_id')} "
+                f"\nRun Id: {run_object.get('id')} \nAssistant Id: {run_object.get('assistant_id')}"
+            )
+            logger.error(detailed_error_message)
+            self.response.update({'status': 0, 'message': error_message})
+            return
+
+        self.response['message'] = list_thread_messages(
+            config=self.config,
+            params={'thread_id': self.params['thread_id'], 'before': self.last_message_id}
+        )
         # check if more token has been used in function calling
         if self.function_call_token_usage is not None:
             self.token_usage = self.set_token_usage(run_object['usage'])
@@ -143,10 +159,25 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_exception(self, exception: Exception) -> None:
-        logger.error(f"Exception occurred while executing thread: {exception}")
+        error_message = f"Exception occurred while executing thread: {exception}"
+        logger.error(error_message)
+        self.response.update({'status': 0, 'message': error_message})
 
-    def get_thread_messages(self):
-        return self.thread_messages
+    def _get_error_message(self, status, run_object):
+        """Helper method to get the error message based on the status."""
+        if status == "incomplete":
+            reason = run_object.get("incomplete_details", {}).get("reason", "unknown")
+            details = run_object.get(reason, "No additional info")
+            return RUN_STATUS_ERROR_MESSAGES[status].format(reason=reason, details=details)
+        elif status == "failed":
+            error_message = run_object.get("last_error", {}).get("message", "No details available")
+            return RUN_STATUS_ERROR_MESSAGES[status].format(error_message=error_message)
+        elif status == "expired":
+            return RUN_STATUS_ERROR_MESSAGES[status]
+        return None
+
+    def get_response(self):
+        return self.response
 
     def call_required_function(self, function_name, arguments):
         try:

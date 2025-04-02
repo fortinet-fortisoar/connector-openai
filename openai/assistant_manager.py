@@ -57,7 +57,10 @@ class AssistantManager:
                 response_format=response_format
         ) as stream:
             stream.until_done()
-        return {"llm_response": event_handler.get_thread_messages(), "token_usage": event_handler.token_usage}
+        response = event_handler.get_response()
+        if response['status']:
+            return {"llm_response": response['message'], "token_usage": event_handler.token_usage}
+        raise Exception(response['message'])
 
 
 def get_llm_response(config, params):
