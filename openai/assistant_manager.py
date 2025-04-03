@@ -60,9 +60,10 @@ class AssistantManager:
         ) as stream:
             stream.until_done()
         response = event_handler.get_response()
-        if response['status'] == 0:
+        logger.info(f'response: {response}')
+        if response['status'] == STATUS_SUCCESS:
             return {"llm_response": response['message'], "token_usage": event_handler.token_usage}
-        raise Exception(response['message'])
+        raise Exception(response['error_details'])
 
 
 def get_llm_response(config, params):
