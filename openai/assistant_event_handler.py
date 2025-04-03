@@ -22,7 +22,7 @@ class EventHandler(AssistantEventHandler):
     def __init__(self, config, params, last_message_id):
         super().__init__()
         self.run_id = None
-        self.response = {'status': 1, 'messages': []}
+        self.response = {'status': 0, 'message': []}
         self.config = config
         self.params = params
         self.tool_outputs = []
@@ -124,7 +124,7 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_end(self):
-        if self.response['status'] == 0:
+        if self.response['status'] == 1:
             return
 
         run_payload = {'run_id': self.run_id, 'thread_id': self.params['thread_id']}
@@ -132,7 +132,7 @@ class EventHandler(AssistantEventHandler):
         while True:
             run_object = get_run(config=self.config, params=run_payload)
             status = run_object['status']
-            logger.info(f'Run Status: {status}')
+            logger.debug(f'Run Status: {status}')
             if status in RUN_FINAL_STATUS:
                 break
 
@@ -144,7 +144,7 @@ class EventHandler(AssistantEventHandler):
                 f"\nRun Id: {run_object.get('id')} \nAssistant Id: {run_object.get('assistant_id')}"
             )
             logger.error(detailed_error_message)
-            self.response.update({'status': 0, 'message': error_message})
+            self.response.update({'status': 1, 'message': error_message})
             return
 
         self.response['message'] = list_thread_messages(
@@ -161,14 +161,14 @@ class EventHandler(AssistantEventHandler):
     def on_exception(self, exception: Exception) -> None:
         error_message = f"Exception occurred while executing thread: {exception}"
         logger.error(error_message)
-        self.response.update({'status': 0, 'message': error_message})
+        self.response.update({'status': 1, 'message': error_message})
 
     def _get_error_message(self, status, run_object):
         """Helper method to get the error message based on the status."""
         if status == "incomplete":
             reason = run_object.get("incomplete_details", {}).get("reason", "unknown")
-            details = run_object.get(reason, "No additional info")
-            return RUN_STATUS_ERROR_MESSAGES[status].format(reason=reason, details=details)
+            limit = run_object.get(reason, "No additional info")
+            return RUN_STATUS_ERROR_MESSAGES[status].format(reason=reason, limit=limit)
         elif status == "failed":
             error_message = run_object.get("last_error", {}).get("message", "No details available")
             return RUN_STATUS_ERROR_MESSAGES[status].format(error_message=error_message)
