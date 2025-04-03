@@ -4,6 +4,8 @@ MIT License
 Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
+import copy
+
 from typing_extensions import override
 from openai import AssistantEventHandler
 from openai.types.beta.threads.runs import RunStepDelta
@@ -13,7 +15,7 @@ from openai.types.beta import AssistantStreamEvent
 from .operations import _init_openai, cancel_run, create_thread_message, get_run, list_thread_messages
 from .utils import execute_connector_action
 from connectors.core.connector import get_logger
-from .constants import LOGGER_NAME
+from .constants import *
 
 logger = get_logger(LOGGER_NAME)
 
@@ -22,7 +24,7 @@ class EventHandler(AssistantEventHandler):
     def __init__(self, config, params, last_message_id):
         super().__init__()
         self.run_id = None
-        self.thread_messages = []
+        self.response = copy.deepcopy(LLM_RESPONSE)
         self.config = config
         self.params = params
         self.tool_outputs = []
@@ -124,17 +126,32 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_end(self):
+        if self.response['status'] != STATUS_SUCCESS:
+            return
+
         run_payload = {'run_id': self.run_id, 'thread_id': self.params['thread_id']}
-        run_object = get_run(config=self.config, params=run_payload)
 
-        # wait for the run to get completed or canceled to load the messages
-        while run_object['status'] not in ['completed', 'cancelled']:
+        while True:
             run_object = get_run(config=self.config, params=run_payload)
-            # logger.info(f'Run Status: {run_object.status}')
+            status = run_object['status']
+            logger.debug(f'Run Status: {status}')
+            if status in RUN_FINAL_STATUS:
+                break
 
-        self.thread_messages = list_thread_messages(config=self.config,
-                                                    params={'thread_id': self.params['thread_id'],
-                                                            'before': self.last_message_id})
+        # Get the error message as per status
+        self._update_status_from_run(status, run_object)
+        if self.response['status'] != STATUS_SUCCESS:
+            error_details = (
+                f"{self.response['error_details']} \nThread Id: {run_object.get('thread_id')} "
+                f"\nRun Id: {run_object.get('id')} \nAssistant Id: {run_object.get('assistant_id')}"
+            )
+            logger.error(error_details)
+            return
+
+        self.response['message'] = list_thread_messages(
+            config=self.config,
+            params={'thread_id': self.params['thread_id'], 'before': self.last_message_id}
+        )
         # check if more token has been used in function calling
         if self.function_call_token_usage is not None:
             self.token_usage = self.set_token_usage(run_object['usage'])
@@ -143,10 +160,30 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_exception(self, exception: Exception) -> None:
-        logger.error(f"Exception occurred while executing thread: {exception}")
+        error_details = f"Exception occurred while executing thread: {exception}"
+        logger.error(error_details)
+        self.response.update({'status': ERROR_OCCURRED, 'error_details': error_details})
 
-    def get_thread_messages(self):
-        return self.thread_messages
+    def _update_status_from_run(self, status, run_object):
+        """Checks the status and updates the response accordingly."""
+        if status == "incomplete":
+            reason = run_object.get("incomplete_details", {}).get("reason", "unknown")
+            limit = run_object.get(reason, "No additional info")
+            error_details = RUN_STATUS_ERROR_MESSAGES[status].format(reason=reason, limit=limit)
+            self.response.update({'status': ERROR_MAX_TOKEN_EXCEEDED, 'error_details': error_details})
+            return error_details
+        elif status == "failed":
+            message = run_object.get("last_error", {}).get("message", "No details available")
+            error_details = RUN_STATUS_ERROR_MESSAGES[status].format(error_message=message)
+            self.response.update({'status': ERROR_FAILED, 'error_details': error_details})
+            return error_details
+        elif status == "expired":
+            error_details = RUN_STATUS_ERROR_MESSAGES[status]
+            self.response.update({'status': ERROR_TIMEOUT, 'error_details': error_details})
+            return error_details
+
+    def get_response(self):
+        return self.response
 
     def call_required_function(self, function_name, arguments):
         try:

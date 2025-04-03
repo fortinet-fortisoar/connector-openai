@@ -54,10 +54,16 @@ class AssistantManager:
                 instructions=instructions,
                 event_handler=event_handler,
                 tool_choice=self.tool_choice,
-                response_format=response_format
+                response_format=response_format,
+                max_prompt_tokens=self.params.get('max_prompt_tokens'),
+                max_completion_tokens=self.params.get('max_completion_tokens')
         ) as stream:
             stream.until_done()
-        return {"llm_response": event_handler.get_thread_messages(), "token_usage": event_handler.token_usage}
+        response = event_handler.get_response()
+        logger.info(f'response: {response}')
+        if response['status'] == STATUS_SUCCESS:
+            return {"llm_response": response['message'], "token_usage": event_handler.token_usage}
+        raise Exception(response['error_details'])
 
 
 def get_llm_response(config, params):

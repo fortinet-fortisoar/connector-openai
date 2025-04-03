@@ -41,3 +41,15 @@ FILE_PURPOSE_MAPPING = {
     "Fine-tune Results": "fine-tune-results"
 }
 ATTACHMENT_TOOLS = {"Code Interpreter": "code_interpreter", "File Search": "file_search"}
+RUN_STATUS_ERROR_MESSAGES = {
+    'incomplete': "Error: OpenAI response incomplete due to \"{reason}\" limit of {limit}.",
+    'failed': "Error: OpenAI response failed due to: {error_message}.",
+    'expired': "Error: OpenAI response expired due to thread run time out."
+}
+RUN_FINAL_STATUS = ['completed', 'cancelled', 'expired', 'failed', 'incomplete']
+ERROR_OCCURRED = -1
+STATUS_SUCCESS = 0
+ERROR_MAX_TOKEN_EXCEEDED = 1
+ERROR_TIMEOUT = 2
+ERROR_FAILED = 3
+LLM_RESPONSE = {'status': STATUS_SUCCESS, 'message': {}, 'error_details': ""}
