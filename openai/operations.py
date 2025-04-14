@@ -5,7 +5,7 @@ Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 import json
-from openai import AzureOpenAI, OpenAI
+from openai import AzureOpenAI, OpenAI, NotFoundError
 import arrow
 import re
 from bs4 import BeautifulSoup
@@ -255,7 +255,18 @@ def update_assistant(config, params):
     client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
-    return client.beta.assistants.update(**payload).model_dump()
+    try:
+        return client.beta.assistants.update(**payload).model_dump()
+    except Exception as err:
+        logger.error(f'ERROR: {err}')
+        logger.error(f'ERROR: {err.__class__}')
+        if isinstance(err, NotFoundError):
+            error_message = "If the API key has changed or doesn't belong to previous project or organization, run 'Clear Assistant Metadata'."
+            logger.exception(error_message)
+            raise ConnectorError(error_message)
+        if hasattr(err, 'error'):
+            raise ConnectorError(err.error.get("message"))
+        raise ConnectorError('{0}'.format(err))
 
 
 def get_thread(config, params):
