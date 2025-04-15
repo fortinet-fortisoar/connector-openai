@@ -5,7 +5,7 @@ Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 import json
-from openai import AzureOpenAI, OpenAI
+from openai import AzureOpenAI, OpenAI, NotFoundError
 import arrow
 import re
 from bs4 import BeautifulSoup
@@ -18,7 +18,7 @@ import httpx
 import os
 from pathlib import Path
 from connectors.cyops_utilities.files import save_file_in_env, download_file_from_cyops
-
+from .error_handler import handle_exception
 
 logger = get_logger(LOGGER_NAME)
 
@@ -255,7 +255,10 @@ def update_assistant(config, params):
     client = _init_openai(config)
     payload = build_payload(params)
     payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
-    return client.beta.assistants.update(**payload).model_dump()
+    try:
+        return client.beta.assistants.update(**payload).model_dump()
+    except Exception as err:
+        handle_exception(err=err)
 
 
 def get_thread(config, params):

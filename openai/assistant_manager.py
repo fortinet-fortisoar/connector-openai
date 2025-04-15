@@ -9,6 +9,7 @@ from .assistant_event_handler import EventHandler
 from .operations import _init_openai, create_thread_message
 from .constants import *
 from connectors.core.connector import get_logger
+from .error_handler import handle_exception
 
 logger = get_logger(LOGGER_NAME)
 
@@ -48,17 +49,20 @@ class AssistantManager:
         response_format = self.params.get('response_format') or None
         if response_format:
             logger.info(f'Response format: {response_format}')
-        with client.beta.threads.runs.stream(
-                thread_id=self.params['thread_id'],
-                assistant_id=self.params['assistant_id'],
-                instructions=instructions,
-                event_handler=event_handler,
-                tool_choice=self.tool_choice,
-                response_format=response_format,
-                max_prompt_tokens=self.params.get('max_prompt_tokens'),
-                max_completion_tokens=self.params.get('max_completion_tokens')
-        ) as stream:
-            stream.until_done()
+        try:
+            with client.beta.threads.runs.stream(
+                    thread_id=self.params['thread_id'],
+                    assistant_id=self.params['assistant_id'],
+                    instructions=instructions,
+                    event_handler=event_handler,
+                    tool_choice=self.tool_choice,
+                    response_format=response_format,
+                    max_prompt_tokens=self.params.get('max_prompt_tokens'),
+                    max_completion_tokens=self.params.get('max_completion_tokens')
+            ) as stream:
+                stream.until_done()
+        except Exception as err:
+            handle_exception(err=err)
         response = event_handler.get_response()
         logger.info(f'response: {response}')
         if response['status'] == STATUS_SUCCESS:

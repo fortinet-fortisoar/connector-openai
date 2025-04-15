@@ -53,3 +53,5 @@ ERROR_MAX_TOKEN_EXCEEDED = 1
 ERROR_TIMEOUT = 2
 ERROR_FAILED = 3
 LLM_RESPONSE = {'status': STATUS_SUCCESS, 'message': {}, 'error_details': ""}
+
+NON_FOUND_ERROR_MESSAGE = "API key has changed or doesn't belong to the project or organization, Try clearing Assistant Metadata."
