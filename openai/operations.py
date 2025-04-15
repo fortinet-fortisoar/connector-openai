@@ -18,7 +18,7 @@ import httpx
 import os
 from pathlib import Path
 from connectors.cyops_utilities.files import save_file_in_env, download_file_from_cyops
-
+from .error_handler import handle_exception
 
 logger = get_logger(LOGGER_NAME)
 
@@ -258,15 +258,7 @@ def update_assistant(config, params):
     try:
         return client.beta.assistants.update(**payload).model_dump()
     except Exception as err:
-        logger.error(f'ERROR: {err}')
-        logger.error(f'ERROR: {err.__class__}')
-        if isinstance(err, NotFoundError):
-            error_message = "If the API key has changed or doesn't belong to previous project or organization, run 'Clear Assistant Metadata'."
-            logger.exception(error_message)
-            raise ConnectorError(error_message)
-        if hasattr(err, 'error'):
-            raise ConnectorError(err.error.get("message"))
-        raise ConnectorError('{0}'.format(err))
+        handle_exception(err=err)
 
 
 def get_thread(config, params):
