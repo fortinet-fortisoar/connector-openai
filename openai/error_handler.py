@@ -6,7 +6,7 @@ Copyright end
 """
 from connectors.core.connector import get_logger, ConnectorError
 
-from .constants import LOGGER_NAME
+from .constants import LOGGER_NAME, NON_FOUND_ERROR_MESSAGE
 from openai import NotFoundError
 
 logger = get_logger(LOGGER_NAME)
@@ -30,6 +30,6 @@ def handle_not_found_error(err: Exception):
     """
     Handles NotFoundError with a contextualized suggestion.
     """
-    error_message = "If the API key has changed or doesn't belong to previous project or organization, Clear Assistant Metadata"
+    error_message = NON_FOUND_ERROR_MESSAGE
     logger.exception(f'Error: {err} \n Message: {error_message}')
     raise ConnectorError(error_message)
