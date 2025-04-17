@@ -75,8 +75,8 @@
               "visible": true,
               "editable": true,
               "required": true,
-              "placeholder": "2024-05-01-preview",
-              "value": "2024-05-01-preview"
+              "placeholder": "2024-12-01-preview",
+              "value": "2024-12-01-preview"
             },
             {
               "title": "Deployment Name",

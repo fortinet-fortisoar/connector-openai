@@ -107,7 +107,7 @@ def chat_completions(config, params):
     openai_args = {"model": model, "messages": messages}
     other_fields = params.get('other_fields', {})
     if config.get("deployment_id"):
-        openai_args.update({"deployment_id": config.get("deployment_id")})
+        openai_args.update({"model": config.get("deployment_id")})
     if temperature:
         openai_args.update({"temperature": temperature})
     if max_tokens:
