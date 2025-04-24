@@ -5,7 +5,7 @@ Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 import copy
-import httpx, asyncio
+import httpcore
 from typing_extensions import override
 from openai import AssistantEventHandler
 from openai.types.beta.threads.runs import RunStepDelta
@@ -160,7 +160,7 @@ class EventHandler(AssistantEventHandler):
 
     @override
     def on_exception(self, exception: Exception) -> None:
-        if isinstance(exception, (httpx.TimeoutException, asyncio.TimeoutError)):
+        if isinstance(exception, httpcore.RemoteProtocolError):
             error_details = f"Timeout occurred while executing thread: {exception}"
             self.response.update({'status': ERROR_OCCURRED, 'error_details': TIMEOUT_ERROR_MESSAGE})
         else:
