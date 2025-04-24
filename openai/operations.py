@@ -288,20 +288,22 @@ def update_thread(config, params):
 
 
 def create_thread_message(config, params):
-    client = _init_openai(config)
-    params['role'] = params.get('role', '').lower()
-    contents = params.get('content')
-    if isinstance(contents, list):
-        for content in contents:
-            c_text, c_type = content.get('text'), content.get('type')
-            if isinstance(content, dict) and c_type == 'text' and c_text and isinstance(c_text, int):
-                content['text'] = str(c_text)
-    elif not isinstance(contents, str):
-        params['content'] = str(contents)
-    payload = build_payload(params)
-    payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
-    return client.beta.threads.messages.create(**payload).model_dump()
-
+    try:
+        client = _init_openai(config)
+        params['role'] = params.get('role', '').lower()
+        contents = params.get('content')
+        if isinstance(contents, list):
+            for content in contents:
+                c_text, c_type = content.get('text'), content.get('type')
+                if isinstance(content, dict) and c_type == 'text' and c_text and isinstance(c_text, int):
+                    content['text'] = str(c_text)
+        elif not isinstance(contents, str):
+            params['content'] = str(contents)
+        payload = build_payload(params)
+        payload['timeout'] = params.get('timeout') if params.get('timeout') else 600
+        return client.beta.threads.messages.create(**payload).model_dump()
+    except Exception as err:
+        handle_exception(err=err)
 
 def list_thread_messages(config, params):
     client = _init_openai(config)
