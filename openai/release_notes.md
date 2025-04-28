@@ -1,11 +1,6 @@
 #### What's Improved
 
-- Added new actions: Delete File
-- Added support for OpenAI 'Structure Output'
-- For Azure OpenAI changed API Version to '2024-12-01-preview' to support OpenAI Assistant API.
-
-#### Bug Fixes:
-
-- Handled different status of run.
-- Handled not found error.
-- For Azure OpenAI, used AzureOpenAI library instead of OpenAI.
+- Added a new action and playbook - Delete File 
+- Integrated support for OpenAI's Structured Output 
+- For Azure OpenAI changed API Version to 2024-05-01-preview and built support for azure-openai library 
+- The integration now handles "not found" errors more gracefully, improving user experience by preventing unexpected disruptions. 
