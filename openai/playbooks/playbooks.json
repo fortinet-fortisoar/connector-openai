@@ -45,7 +45,7 @@
                   "timeout": 600,
                   "other_fields": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "chat_completions",
                 "operationTitle": "Ask a Question"
@@ -121,7 +121,7 @@
                   "timeout": 600,
                   "other_fields": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "chat_conversation",
                 "operationTitle": "Converse With OpenAI"
@@ -189,7 +189,7 @@
                 "name": "OpenAI",
                 "config": "",
                 "params": [],
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "list_models",
                 "operationTitle": "List Available Models"
@@ -259,7 +259,7 @@
                 "params": {
                   "date": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_usage",
                 "operationTitle": "Get Tokens Usage"
@@ -330,7 +330,7 @@
                   "input_text": "",
                   "model": "gpt-4"
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "count_tokens",
                 "operationTitle": "Get Token Count"
@@ -403,7 +403,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "list_assistants",
                 "operationTitle": "List Assistants"
@@ -473,7 +473,7 @@
                 "params": {
                   "assistant_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_assistant",
                 "operationTitle": "Get Assistant Details"
@@ -574,7 +574,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_assistant",
                 "operationTitle": "Create Assistant"
@@ -676,7 +676,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "update_assistant",
                 "operationTitle": "Update Assistant"
@@ -746,7 +746,7 @@
                 "params": {
                   "assistant_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "delete_assistant",
                 "operationTitle": "Delete Assistant"
@@ -816,7 +816,7 @@
                 "params": {
                   "thread_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_thread",
                 "operationTitle": "Get Thread Details"
@@ -886,7 +886,7 @@
                 "params": {
                   "thread_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "delete_thread",
                 "operationTitle": "Delete Thread"
@@ -982,7 +982,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_thread",
                 "operationTitle": "Create Thread"
@@ -1070,7 +1070,7 @@
                     "user": "abc123"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "update_thread",
                 "operationTitle": "Update Thread"
@@ -1164,7 +1164,7 @@
                     "tags": "OpenAI"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_thread_message",
                 "operationTitle": "Create Thread Message"
@@ -1239,7 +1239,7 @@
                     "user": "abc123"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "update_thread_message",
                 "operationTitle": "Update Thread Message"
@@ -1314,7 +1314,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "list_thread_messages",
                 "operationTitle": "List Thread Messages"
@@ -1385,7 +1385,7 @@
                   "thread_id": "",
                   "message_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_thread_message",
                 "operationTitle": "Get Thread Message Details"
@@ -1456,7 +1456,7 @@
                   "thread_id": "",
                   "message_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "delete_thread_message",
                 "operationTitle": "Delete Thread Message"
@@ -1530,7 +1530,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "list_runs",
                 "operationTitle": "List Runs"
@@ -1601,7 +1601,7 @@
                   "thread_id": "",
                   "run_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_run",
                 "operationTitle": "Get Run Details"
@@ -1697,7 +1697,7 @@
                   "max_prompt_tokens": "",
                   "other_fields": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_run",
                 "operationTitle": "Create Run"
@@ -1807,7 +1807,7 @@
                   "max_prompt_tokens": "",
                   "other_fields": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_thread_and_run",
                 "operationTitle": "Create Thread and Run"
@@ -1881,7 +1881,7 @@
                     "user_id": "user_abc123"
                   }
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "update_run",
                 "operationTitle": "Update Run"
@@ -1952,7 +1952,7 @@
                   "thread_id": "",
                   "run_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "cancel_run",
                 "operationTitle": "Cancel Run"
@@ -2029,7 +2029,7 @@
                     }
                   ]
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "submit_tool_outputs_to_run",
                 "operationTitle": "Submit Tool Outputs To Run"
@@ -2104,7 +2104,7 @@
                   "before": "",
                   "limit": "20"
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "list_run_steps",
                 "operationTitle": "List Run Steps"
@@ -2176,7 +2176,7 @@
                   "run_id": "",
                   "step_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_run_step",
                 "operationTitle": "Get Run Step Details"
@@ -2252,7 +2252,7 @@
                   },
                   "metadata": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_vector_store",
                 "operationTitle": "Create Vector Store"
@@ -2322,7 +2322,7 @@
                 "params": {
                   "vector_store_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_vector_store",
                 "operationTitle": "Get Vector Store Details"
@@ -2393,7 +2393,7 @@
                   "vector_store_id": "",
                   "file_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_vector_store_file",
                 "operationTitle": "Create Vector Store File"
@@ -2464,7 +2464,7 @@
                   "vector_store_id": "",
                   "file_ids": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_vector_store_file_batch",
                 "operationTitle": "Create Vector Store File Batch"
@@ -2535,7 +2535,7 @@
                   "vector_store_id": "",
                   "batch_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_vector_store_file_batch",
                 "operationTitle": "Get Vector Store File Batch"
@@ -2606,7 +2606,7 @@
                   "vector_store_id": "",
                   "batch_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "cancel_vector_store_file_batch",
                 "operationTitle": "Cancel Vector Store File Batch"
@@ -2681,7 +2681,7 @@
                   "response_format": "mp3",
                   "speed": 1.0
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_speech",
                 "operationTitle": "Create Speech"
@@ -2756,7 +2756,7 @@
                   "temperature": "",
                   "timestamp_granularities": "segment"
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_transcription",
                 "operationTitle": "Create Transcription"
@@ -2829,7 +2829,7 @@
                   "prompt": "",
                   "temperature": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "create_translation",
                 "operationTitle": "Create Translation"
@@ -2899,7 +2899,7 @@
                 "params": {
                   "file_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_file",
                 "operationTitle": "Get File Details"
@@ -2963,7 +2963,7 @@
                 "params": {
                   "purpose": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "list_files",
                 "operationTitle": "List Files",
@@ -3063,7 +3063,7 @@
                   "file": "",
                   "purpose": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "upload_file",
                 "operationTitle": "Upload File"
@@ -3133,7 +3133,7 @@
                 "params": {
                   "thread_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_thread",
                 "operationTitle": "Get Thread Details"
@@ -3205,7 +3205,7 @@
                   "run_id": "",
                   "step_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_run_step",
                 "operationTitle": "Get Run Step Details"
@@ -3275,7 +3275,7 @@
                 "params": {
                   "vector_store_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_vector_store",
                 "operationTitle": "Get Vector Store Details"
@@ -3345,7 +3345,7 @@
                 "params": {
                   "file_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "get_file",
                 "operationTitle": "Get File Details"
@@ -3415,7 +3415,7 @@
                 "params": {
                   "file_id": ""
                 },
-                "version": "3.1.0",
+                "version": "4.0.0",
                 "connector": "openai",
                 "operation": "delete_file",
                 "operationTitle": "Delete File"
@@ -3452,7 +3452,7 @@
           ]
         }
       ],
-      "name": "Sample - OpenAI - 3.1.0",
+      "name": "Sample - OpenAI - 4.0.0",
       "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
       "visible": true,
       "recordTags": [

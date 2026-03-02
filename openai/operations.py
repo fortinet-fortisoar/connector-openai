@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2025 Fortinet Inc
+Copyright (c) 2026 Fortinet Inc
 Copyright end
 """
 import json
@@ -21,6 +21,12 @@ from connectors.cyops_utilities.files import save_file_in_env, download_file_fro
 from .error_handler import handle_exception
 
 logger = get_logger(LOGGER_NAME)
+
+# Below functionality is only compatible with FSR version 8.0.0 and later
+try:
+    from connectors.entities.llm_entity import LLMResponseFormat, LLMTool, LLMToolChoice, LLMProvider, LLMResponse
+except:
+    pass
 
 
 # logger.setLevel(logging.DEBUG)
@@ -94,6 +100,124 @@ def _init_openai(config):
     return client
 
 
+def chat_completions_new(config, params):
+    """
+    OpenAI-specific connector implementation.
+    Accepts unified params and translates to OpenAI format.
+    Returns normalized LLMResponse.
+    """
+    try:
+        client = _init_openai(config)
+
+        # -- Merge config: base config is default, params.config overrides ---
+        merged_config = {**config, **(params.get("config", {}))}
+        model = merged_config.get("model",'').lower() or DEFAULT_MODEL
+        temperature = merged_config.get("temperature")
+        top_p = merged_config.get("top_p")
+        max_tokens = merged_config.get("max_tokens")
+        timeout = merged_config.get("timeout") or 600
+        presence_penalty = merged_config.get("presence_penalty")
+        frequency_penalty = merged_config.get("frequency_penalty")
+        messages = params.get("messages", [])
+        response_format = params.get("response_format")
+        tools = params.get("tools")
+        tool_choice = params.get("tool_choice")
+
+        openai_args = {
+            "model": merged_config.get("deployment_id") or model,
+            "messages": messages,
+            "timeout": timeout,
+        }
+
+        if temperature is not None:
+            openai_args["temperature"] = temperature
+
+        if top_p is not None:
+            openai_args["top_p"] = top_p
+
+        if max_tokens is not None:
+            openai_args["max_tokens"] = max_tokens
+
+        if presence_penalty is not None:
+            openai_args["presence_penalty"] = presence_penalty
+
+        if frequency_penalty is not None:
+            openai_args["frequency_penalty"] = frequency_penalty
+
+        # -- Response Format -------------------------------------------------
+        if response_format is not None:
+            try:
+                openai_args["response_format"] = LLMResponseFormat(response_format).for_provider(LLMProvider.OPENAI)
+            except ValueError:
+                logger.warning(f"Unsupported response format, skipping: {response_format}")
+
+        # -- Tools -----------------------------------------------------------
+        if tools:
+            serialized_tools = []
+            for tool in tools:
+                try:
+                    serialized_tools.append(LLMTool(tool).to_openai())
+                except ValueError:
+                    logger.warning(f"Unsupported tool definition, skipping: {tool}")
+            if serialized_tools:
+                openai_args["tools"] = serialized_tools
+
+        # -- Tool Choice -----------------------------------------------------
+        if tool_choice is not None and "tools" in openai_args:
+            try:
+                openai_args["tool_choice"] = LLMToolChoice(tool_choice).to_openai()
+            except ValueError:
+                logger.warning(f"Unsupported tool choice, skipping: {tool_choice}")
+
+        # -- Call ------------------------------------------------------------
+        response = client.chat.completions.create(**openai_args)
+
+        # -- Normalize -------------------------------------------------------
+        if not response.choices:
+            return LLMResponse().to_dict()
+
+        message = response.choices[0].message
+        content = message.content or ""
+        tool_calls = message.tool_calls or []
+
+        usage = {
+            "prompt_tokens": getattr(response.usage, "prompt_tokens", 0),
+            "completion_tokens": getattr(response.usage, "completion_tokens", 0),
+            "total_tokens": getattr(response.usage, "total_tokens", 0),
+        }
+
+        if tool_calls:
+            first = tool_calls[0]
+            tool_name = first.function.name
+            tool_args = first.function.arguments
+            if isinstance(tool_args, str):
+                try:
+                    tool_args = json.loads(tool_args)
+                except json.JSONDecodeError:
+                    logger.warning(f"Failed to parse tool arguments: {tool_args}")
+                    tool_args = {}
+
+            return LLMResponse(
+                content=content,
+                tool_name=tool_name,
+                tool_args=tool_args,
+                usage=usage,
+                model=response.model,
+                provider="openai",
+            ).to_dict()
+
+        return LLMResponse(
+            content=content.strip().replace('```json', '').replace('```', ''),
+            usage=usage,
+            model=response.model,
+            provider="openai",
+        ).to_dict()
+
+    except Exception as e:
+        logger.error(f"OpenAI connector error: {e}")
+        return LLMResponse(error=str(e)).to_dict()
+
+
 def chat_completions(config, params):
     client = _init_openai(config)
     model = params.get('model')
@@ -158,8 +282,10 @@ def check(config):
     except Exception as err:
         if hasattr(err, 'code'):
             if err.code == 'invalid_api_key':
-                logger.exception("Incorrect API key provided. You can find your API key at https://platform.openai.com/account/api-keys")
-                raise ConnectorError("Incorrect API key provided. You can find your API key at https://platform.openai.com/account/api-keys",)
+                logger.exception(
+                    "Incorrect API key provided. You can find your API key at https://platform.openai.com/account/api-keys")
+                raise ConnectorError(
+                    "Incorrect API key provided. You can find your API key at https://platform.openai.com/account/api-keys", )
             if hasattr(err, 'body') and err.body.get("message"):
                 logger.exception(err.body.get("message"))
                 raise ConnectorError(err.body.get("message"))
@@ -304,6 +430,7 @@ def create_thread_message(config, params):
         return client.beta.threads.messages.create(**payload).model_dump()
     except Exception as err:
         handle_exception(err=err)
+
 
 def list_thread_messages(config, params):
     client = _init_openai(config)

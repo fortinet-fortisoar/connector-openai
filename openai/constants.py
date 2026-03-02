@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2025 Fortinet Inc
+Copyright (c) 2026 Fortinet Inc
 Copyright end
 """
 LOGGER_NAME = 'openai'
@@ -57,4 +57,4 @@ LLM_RESPONSE = {'status': STATUS_SUCCESS, 'message': {}, 'error_details': ""}
 NON_FOUND_ERROR_MESSAGE = "API key has changed or doesn't belong to the project or organization, Try clearing Assistant Metadata."
 TIMEOUT_ERROR_MESSAGE = "An issue occurred within the OpenAI service. Please clear the conversation or try again after some time."
 BAD_REQUEST_ERROR_MESSAGE = "It appears that previous conversation is still active. Kindly clear the conversation or try again after some time."
-
+DEFAULT_MODEL='gpt-4o'

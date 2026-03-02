@@ -1,6 +1,6 @@
 {
   "name": "openai",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "label": "OpenAI",
   "description": "This integration supports interacting with OpenAI's powerful language model, ChatGPT from FortiSOAR workflows",
   "publisher": "Fortinet",
@@ -8,8 +8,8 @@
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.1.0/openai/1060/openai-v3-1-0",
-  "category": "Miscellaneous",
+  "help_online": "",
+  "category": ["LLM Provider"],
   "configuration": {
     "fields": [
       {
@@ -42,6 +42,431 @@
         "required": false,
         "visible": true,
         "editable": true
+      },
+      {
+        "title": "Open AI Models",
+        "name": "model",
+        "type": "select",
+        "description": "Select the LLM model you want to use for chat completion.",
+        "tooltip": "Select the LLM model you want to use for chat completion.",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "options": [
+          "GPT-4o",
+          "GPT-4o Mini",
+          "GPT-4.1",
+          "GPT-4.1 Mini",
+          "GPT-5.1",
+          "GPT-5.1 Mini",
+          "Claude 3.7 Opus",
+          "Claude 3.7 Sonnet",
+          "Claude 3.7 Haiku",
+          "Gemini 2.0 Pro",
+          "Gemini 2.0 Flash",
+          "Gemini 2.0 Flash Lite"
+        ],
+        "onchange": {
+          "GPT-5.1": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_completion_tokens": 8192,
+                      "verbosity": "medium",
+                      "reasoning_effort": "low"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "GPT-5.1 Mini": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_completion_tokens": 8192,
+                      "verbosity": "medium",
+                      "reasoning_effort": "low"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "GPT-4.1": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_completion_tokens": 8192,
+                      "temperature": 0.0,
+                      "top_p": 1.0,
+                      "frequency_penalty": 0.0,
+                      "presence_penalty": 0.0
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "GPT-4.1 Mini": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_completion_tokens": 8192,
+                      "temperature": 0.0,
+                      "top_p": 1.0,
+                      "frequency_penalty": 0.0,
+                      "presence_penalty": 0.0
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "GPT-4o": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_completion_tokens": 8192,
+                      "temperature": 0.0,
+                      "top_p": 1.0,
+                      "frequency_penalty": 0.0,
+                      "presence_penalty": 0.0
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "GPT-4o Mini": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_completion_tokens": 4096,
+                      "temperature": 0.0,
+                      "top_p": 1.0,
+                      "frequency_penalty": 0.0,
+                      "presence_penalty": 0.0
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Claude 3.7 Opus": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_tokens": 8192,
+                      "temperature": 0.7,
+                      "top_p": 0.999,
+                      "top_k": 50
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Claude 3.7 Sonnet": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_tokens": 8192,
+                      "temperature": 0.7,
+                      "top_p": 0.999,
+                      "top_k": 50
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Claude 3.7 Haiku": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_tokens": 4096,
+                      "temperature": 0.7,
+                      "top_p": 0.999,
+                      "top_k": 50
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Gemini 2.0 Pro": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_output_tokens": 8192,
+                      "temperature": 1.0,
+                      "top_p": 1.0,
+                      "top_k": 40
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Gemini 2.0 Flash": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_output_tokens": 4096,
+                      "temperature": 1.0,
+                      "top_p": 1.0,
+                      "top_k": 40
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Gemini 2.0 Flash Lite": [
+            {
+              "title": "Additional Parameters",
+              "type": "checkbox",
+              "name": "addition_parameter_is_required",
+              "tooltip": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "description": "If the LLM model requires an additional parameter, then check this parameter. By default, it is set to false.",
+              "required": false,
+              "visible": true,
+              "editable": true,
+              "value": false,
+              "onchange": {
+                "true": [
+                  {
+                    "title": "Additional Parameters",
+                    "description": "specify the additional parameters required for execution",
+                    "tooltip": "specify the additional parameters required for execution",
+                    "name": "config",
+                    "type": "json",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": {
+                      "max_output_tokens": 2048,
+                      "temperature": 1.0,
+                      "top_p": 1.0,
+                      "top_k": 40
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "value": "GPT-4o"
       },
       {
         "title": "Use Microsoft Azure OpenAI Endpoint",
@@ -211,6 +636,114 @@
         "system_fingerprint": ""
       },
       "enabled": true
+    },
+    {
+      "title": "Chat Completions New",
+      "operation": "chat_completions_new",
+      "annotation": "chat_completions",
+      "description": "Generates a contextually relevant response to a given question using a pre-trained deep learning model.",
+      "parameters": [
+        {
+          "title": "Message",
+          "type": "json",
+          "name": "message",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the message or question for which you want to generate a response.",
+          "tooltip": "Specify the message or question for which you want to generate a response.",
+          "value": ""
+        },
+        {
+          "title": "Model",
+          "type": "text",
+          "name": "model",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "gpt-3.5-turbo",
+          "description": "Specify the ID of the GPT model to use for the chat completion. Currently, gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4, and gpt-4-1106-preview are supported. By default, it is set to gpt-3.5-turbo.",
+          "tooltip": "Specify the ID of the GPT model to use for the chat completion. Currently, only gpt-3.5-turbo and gpt-3.5-turbo-0301 are supported."
+        },
+        {
+          "title": "Temperature",
+          "type": "text",
+          "name": "temperature",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the sampling temperature between 0 and 2. Higher values, such as, 0.8 make the output more random, while lower values make the output more focused and deterministic. NOTE: It is recommended to use either this parameter or the Top Probability parameter, not both. By default, this parameter is set to 1.",
+          "tooltip": "Specify the sampling temperature between 0 and 2. Higher values, such as, 0.8 make the output more random, while lower values make the output more focused and deterministic. NOTE: It is recommended to use either this parameter or the 'Top Probability' parameter, not both."
+        },
+        {
+          "title": "Top Probability",
+          "type": "text",
+          "name": "top_p",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So, 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or the Temperature parameter, not both. By default, this parameter is set to 1.",
+          "tooltip": "Specify the top probability, an alternative to sampling with temperature, also called nucleus sampling. The model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. NOTE: It is recommended to use either this parameter or Temperature parameter, not both."
+        },
+        {
+          "title": "Max Tokens",
+          "type": "integer",
+          "name": "max_tokens",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "(Optional) Specify the maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length.",
+          "tooltip": "Specify maximum number of tokens to generate in the chat completion. NOTE: The total length of input tokens and generated tokens is limited by the model's context length."
+        },
+        {
+          "title": "Timeout",
+          "type": "integer",
+          "name": "timeout",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "600",
+          "description": "(Optional) Specify the maximum time (in seconds) you want to wait for the action to complete successfully. By default, the timeout is set to 600 seconds.",
+          "tooltip": "Specify the maximum time (in seconds) you want to wait for the action to complete successfully."
+        },
+        {
+          "title": "Additional Inputs",
+          "type": "json",
+          "name": "other_fields",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "(Optional) Specify any other inputs, as a key-value pair, to be included in the OpenAI Completions API request. For example, { \"seed\": 123 }",
+          "tooltip": "Use this to add any other inputs to the OpenAI Completions API request as a key-value pair. For example, {\n            \"seed\": 123\n          }"
+        }
+      ],
+      "category": "miscellaneous",
+      "output_schema": {
+        "id": "",
+        "model": "",
+        "usage": {
+          "total_tokens": "",
+          "prompt_tokens": "",
+          "completion_tokens": ""
+        },
+        "object": "",
+        "choices": [
+          {
+            "index": "",
+            "message": {
+              "role": "",
+              "content": "",
+              "tool_calls": "",
+              "function_call": ""
+            },
+            "finish_reason": ""
+          }
+        ],
+        "created": "",
+        "system_fingerprint": ""
+      },
+      "enabled": true,
+      "visible": false
     },
     {
       "title": "Converse With OpenAI",
