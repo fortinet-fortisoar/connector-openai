@@ -2,7 +2,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2025 Fortinet Inc
+Copyright (c) 2026 Fortinet Inc
 Copyright end
 """
 from .operations import *
@@ -59,5 +59,7 @@ supported_operations = {
     'list_files': list_files,
     'upload_file': upload_file,
     'delete_files': delete_files,
-    'get_llm_response': get_llm_response
+    'get_llm_response': get_llm_response,
+
+    'chat_completions_new': chat_completions_new
     }
