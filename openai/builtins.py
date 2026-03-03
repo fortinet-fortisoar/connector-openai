@@ -61,5 +61,5 @@ supported_operations = {
     'delete_files': delete_files,
     'get_llm_response': get_llm_response,
 
-    'chat_completions_new': chat_completions_new
+    'agent_chat_completions': agent_chat_completions
     }

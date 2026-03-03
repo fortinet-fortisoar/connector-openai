@@ -99,8 +99,66 @@ def _init_openai(config):
         )
     return client
 
+def build_agent_chat_completions_payload(merged_config, params):
+    model = merged_config.get("model", '').replace(' ','-').lower() or DEFAULT_MODEL
+    temperature = merged_config.get("temperature")
+    top_p = merged_config.get("top_p")
+    max_tokens = merged_config.get("max_tokens")
+    timeout = merged_config.get("timeout") or 600
+    presence_penalty = merged_config.get("presence_penalty")
+    frequency_penalty = merged_config.get("frequency_penalty")
+    messages = params.get("messages", [])
+    response_format = params.get("response_format")
+    tools = params.get("tools")
+    tool_choice = params.get("tool_choice")
+    openai_args = {
+        "model": merged_config.get("deployment_id") or model,
+        "messages": messages,
+        "timeout": timeout,
+    }
 
-def chat_completions_new(config, params):
+    if temperature is not None:
+        openai_args["temperature"] = temperature
+
+    if top_p is not None:
+        openai_args["top_p"] = top_p
+
+    if max_tokens is not None:
+        openai_args["max_tokens"] = max_tokens
+
+    if presence_penalty is not None:
+        openai_args["presence_penalty"] = presence_penalty
+
+    if frequency_penalty is not None:
+        openai_args["frequency_penalty"] = frequency_penalty
+
+    # -- Response Format -------------------------------------------------
+    if response_format is not None:
+        try:
+            openai_args["response_format"] = LLMResponseFormat(response_format).for_provider(LLMProvider.OPENAI)
+        except ValueError:
+            logger.warning(f"Unsupported response format, skipping: {response_format}")
+        # -- Tools -----------------------------------------------------------
+    if tools:
+        serialized_tools = []
+        for tool in tools:
+            try:
+                serialized_tools.append(LLMTool(tool).to_openai())
+            except ValueError:
+                logger.warning(f"Unsupported tool definition, skipping: {tool}")
+        if serialized_tools:
+            openai_args["tools"] = serialized_tools
+
+    # -- Tool Choice -----------------------------------------------------
+    if tool_choice is not None and "tools" in openai_args:
+        try:
+            openai_args["tool_choice"] = LLMToolChoice(tool_choice).to_openai()
+        except ValueError:
+            logger.warning(f"Unsupported tool choice, skipping: {tool_choice}")
+    return openai_args
+
+
+def agent_chat_completions(config, params):
     """
     OpenAI-specific connector implementation.
     Accepts unified params and translates to OpenAI format.
@@ -111,63 +169,7 @@ def chat_completions_new(config, params):
 
         # -- Merge config: base config is default, params.config overrides ---
         merged_config = {**config, **(params.get("config", {}))}
-        model = merged_config.get("model",'').lower() or DEFAULT_MODEL
-        temperature = merged_config.get("temperature")
-        top_p = merged_config.get("top_p")
-        max_tokens = merged_config.get("max_tokens")
-        timeout = merged_config.get("timeout") or 600
-        presence_penalty = merged_config.get("presence_penalty")
-        frequency_penalty = merged_config.get("frequency_penalty")
-        messages = params.get("messages", [])
-        response_format = params.get("response_format")
-        tools = params.get("tools")
-        tool_choice = params.get("tool_choice")
-
-        openai_args = {
-            "model": merged_config.get("deployment_id") or model,
-            "messages": messages,
-            "timeout": timeout,
-        }
-
-        if temperature is not None:
-            openai_args["temperature"] = temperature
-
-        if top_p is not None:
-            openai_args["top_p"] = top_p
-
-        if max_tokens is not None:
-            openai_args["max_tokens"] = max_tokens
-
-        if presence_penalty is not None:
-            openai_args["presence_penalty"] = presence_penalty
-
-        if frequency_penalty is not None:
-            openai_args["frequency_penalty"] = frequency_penalty
-
-        # -- Response Format -------------------------------------------------
-        if response_format is not None:
-            try:
-                openai_args["response_format"] = LLMResponseFormat(response_format).for_provider(LLMProvider.OPENAI)
-            except ValueError:
-                logger.warning(f"Unsupported response format, skipping: {response_format}")
-
-        # -- Tools -----------------------------------------------------------
-        if tools:
-            serialized_tools = []
-            for tool in tools:
-                try:
-                    serialized_tools.append(LLMTool(tool).to_openai())
-                except ValueError:
-                    logger.warning(f"Unsupported tool definition, skipping: {tool}")
-            if serialized_tools:
-                openai_args["tools"] = serialized_tools
-
-        # -- Tool Choice -----------------------------------------------------
-        if tool_choice is not None and "tools" in openai_args:
-            try:
-                openai_args["tool_choice"] = LLMToolChoice(tool_choice).to_openai()
-            except ValueError:
-                logger.warning(f"Unsupported tool choice, skipping: {tool_choice}")
+        openai_args = build_agent_chat_completions_payload(merged_config, params)
 
         # -- Call ------------------------------------------------------------
         response = client.chat.completions.create(**openai_args)
@@ -214,6 +216,7 @@ def chat_completions_new(config, params):
         ).to_dict()
 
     except Exception as e:
+        logger.exception(e)
         logger.error(f"OpenAI connector error: {e}")
         return LLMResponse(error=str(e)).to_dict()
 
